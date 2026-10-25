@@ -145,23 +145,23 @@
 
   <header class="hero">
     <div class="brand" id="brand"></div>
-    <h1>√‰«ﬁ ﬂ  »œ√ „‰ <span>Â‰«</span></h1>
-    <p> ‘ﬂÌ·… „Œ «—… »⁄‰«Ì… „‰ √ÕœÀ «·„ÊœÌ·« ° »ÃÊœ… ⁄«·Ì… Ê√”⁄«—  ‰«”»ﬂ</p>
+    <h1>√É√§√á√û√ä√ü √ä√à√è√É √£√§ <span>√•√§√á</span></h1>
+    <p>√ä√î√ü√≠√°√â √£√é√ä√á√ë√â √à√ö√§√á√≠√â √£√§ √É√ç√è√ã √á√°√£√¶√è√≠√°√á√ä¬° √à√å√¶√è√â √ö√á√°√≠√â √¶√É√ì√ö√á√ë √ä√§√á√ì√à√ü</p>
     <div class="line"></div>
   </header>
 
   <div class="toolbar">
     <div class="toolbar-box">
-      <input id="search" type="search" placeholder="«»ÕÀ »«·«”„ √Ê «·ﬂÊœ...">
+      <input id="search" type="search" placeholder="√á√à√ç√ã √à√á√°√á√ì√£ √É√¶ √á√°√ü√¶√è...">
       <div class="chips">
-        <button class="chip active" data-f="all">«·ﬂ·</button>
-        <button class="chip" data-f="in">«·„ Ê›—</button>
-        <button class="chip" data-f="out">‰›–</button>
+        <button class="chip active" data-f="all">√á√°√ü√°</button>
+        <button class="chip" data-f="in">√á√°√£√ä√¶√ù√ë</button>
+        <button class="chip" data-f="out">√§√ù√ê</button>
       </div>
       <select id="sort">
-        <option value="def">«· — Ì» «·«› —«÷Ì</option>
-        <option value="asc">«·”⁄—: «·√ﬁ· √Ê·«</option>
-        <option value="desc">«·”⁄—: «·√⁄·Ï √Ê·«</option>
+        <option value="def">√á√°√ä√ë√ä√≠√à √á√°√á√ù√ä√ë√á√ñ√≠</option>
+        <option value="asc">√á√°√ì√ö√ë: √á√°√É√û√° √É√¶√°√á√∞</option>
+        <option value="desc">√á√°√ì√ö√ë: √á√°√É√ö√°√¨ √É√¶√°√á√∞</option>
       </select>
     </div>
   </div>
@@ -182,16 +182,16 @@
         <div class="code" id="mcode"></div>
         <h2 id="mname"></h2>
         <div id="colorBlock">
-          <div class="lbl" style="margin-bottom:8px">«··Ê‰: <b id="colorName"></b></div>
+          <div class="lbl" style="margin-bottom:8px">√á√°√°√¶√§: <b id="colorName"></b></div>
           <div class="opts" id="mcolors"></div>
         </div>
         <div>
-          <div class="lbl" style="margin-bottom:8px">«·„ﬁ«”</div>
+          <div class="lbl" style="margin-bottom:8px">√á√°√£√û√á√ì</div>
           <div class="opts" id="msizes"></div>
         </div>
         <div class="p" id="mprice"></div>
         <div class="status" id="mstatus"></div>
-        <a class="btn wa" id="mwa" target="_blank" rel="noopener">«ÿ·» «·¬‰ ⁄»— Ê« ”«»</a>
+        <a class="btn wa" id="mwa" target="_blank" rel="noopener">√á√ò√°√à √á√°√Ç√§ √ö√à√ë √¶√á√ä√ì√á√à</a>
       </div>
     </div>
   </div>
@@ -201,7 +201,7 @@
     var API_URL = 'https://script.google.com/macros/s/AKfycbye_Y6ILEWrITBKub1aGYquyj_jEOZLsXRz5GFkMS5UKZRnRqjPzLiW0koiG3W8zmh3/exec';
     var BRAND = 'HoodZilla';
     var WHATSAPP = '201553265558';      // country code, no + or spaces. Leave empty to hide the button.
-    var CURRENCY = 'Ã.„';
+    var CURRENCY = '√å.√£';
     var ROTATE_MS = 3000;               // auto image change speed (milliseconds)
     // ================================
 
@@ -334,13 +334,13 @@
               imgs[state.i].className = 'on';
             });
             setTimeout(function () { imgs[1].load(); }, 800);
-            wrap.appendChild(el('div', 'ccount', imgs.length + ' √·Ê«‰'));
+            wrap.appendChild(el('div', 'ccount', imgs.length + ' √É√°√¶√á√§'));
           }
         } else {
-          wrap.appendChild(el('div', 'noimg', '·«  ÊÃœ ’Ê—…'));
+          wrap.appendChild(el('div', 'noimg', '√°√á √ä√¶√å√è √ï√¶√ë√â'));
         }
-        if (p.inStock) wrap.appendChild(el('div', 'tag', '„ Ê›—'));
-        else wrap.appendChild(el('div', 'badge', '‰›–'));
+        if (p.inStock) wrap.appendChild(el('div', 'tag', '√£√ä√¶√ù√ë'));
+        else wrap.appendChild(el('div', 'badge', '√§√ù√ê'));
         card.appendChild(wrap);
 
         var info = el('div', 'info');
@@ -354,11 +354,11 @@
         var pr = el('div', 'price');
         if (p.inStock) {
           var cp = cardPrice(p);
-          if (cp.differ) pr.appendChild(el('span', 'from', 'Ì»œ√ „‰'));
+          if (cp.differ) pr.appendChild(el('span', 'from', '√≠√à√è√É √£√§'));
           pr.appendChild(document.createTextNode(cp.text));
           pr.appendChild(el('small', '', CURRENCY));
         } else {
-          pr.textContent = '‰›– „‰ «·„Œ“Ê‰';
+          pr.textContent = '√§√ù√ê √£√§ √á√°√£√é√í√¶√§';
         }
         info.appendChild(pr);
         card.appendChild(info);
@@ -367,8 +367,8 @@
         grid.appendChild(card);
       });
 
-      document.getElementById('msg').textContent = list.length ? '' : '·«  ÊÃœ „‰ Ã«  „ÿ«»ﬁ…';
-      document.getElementById('count').textContent = list.length ? list.length + ' œÌ“«Ì‰' : '';
+      document.getElementById('msg').textContent = list.length ? '' : '√°√á √ä√¶√å√è √£√§√ä√å√á√ä √£√ò√á√à√û√â';
+      document.getElementById('count').textContent = list.length ? list.length + ' √è√≠√í√á√≠√§' : '';
     }
 
     // One global timer for all cards
@@ -392,7 +392,7 @@
       modalImgs = [];
       stopModalTimer();
       var cols = p.colors.filter(function (c) { return c.imageId; });
-      if (!cols.length) { pic.appendChild(el('div', 'noimg', '·«  ÊÃœ ’Ê—…')); return; }
+      if (!cols.length) { pic.appendChild(el('div', 'noimg', '√°√á √ä√¶√å√è √ï√¶√ë√â')); return; }
       cols.forEach(function (c) {
         var im = makeImg(c.imageId, 1000, p.name + ' ' + c.name);
         pic.appendChild(im);
@@ -429,14 +429,14 @@
         if (c.inStock) b.addEventListener('click', function () { selectColor(c); });
         box.appendChild(b);
       });
-      document.getElementById('colorName').textContent = curColor ? curColor.name : '«Œ — «··Ê‰';
+      document.getElementById('colorName').textContent = curColor ? curColor.name : '√á√é√ä√ë √á√°√°√¶√§';
     }
 
     function renderSizes() {
       var box = document.getElementById('msizes');
       box.innerHTML = '';
       if (!curColor) {
-        box.appendChild(el('div', 'hint', '«Œ — «··Ê‰ √Ê·« ·⁄—÷ «·„ﬁ«”«  «·„ «Õ…'));
+        box.appendChild(el('div', 'hint', '√á√é√ä√ë √á√°√°√¶√§ √É√¶√°√á√∞ √°√ö√ë√ñ √á√°√£√û√á√ì√á√ä √á√°√£√ä√á√ç√â'));
         return;
       }
       curColor.sizes.forEach(function (s) {
@@ -455,16 +455,16 @@
 
       if (curSize) {
         pr.textContent = curSize.price + ' ' + CURRENCY;
-        st.textContent = '„ Ê›— ›Ì «·„Œ“Ê‰';
+        st.textContent = '√£√ä√¶√ù√ë √ù√≠ √á√°√£√é√í√¶√§';
         st.className = 'status ok';
       } else if (!curColor && p.inStock) {
         var cp = cardPrice(p);
-        pr.textContent = (cp.differ ? 'Ì»œ√ „‰ ' : '') + cp.text + ' ' + CURRENCY;
+        pr.textContent = (cp.differ ? '√≠√à√è√É √£√§ ' : '') + cp.text + ' ' + CURRENCY;
         st.textContent = '';
         st.className = 'status';
       } else {
         pr.textContent = '';
-        st.textContent = '‰›– „‰ «·„Œ“Ê‰';
+        st.textContent = '√§√ù√ê √£√§ √á√°√£√é√í√¶√§';
         st.className = 'status no';
       }
 
@@ -472,14 +472,14 @@
       wa.style.display = 'block';
       if (curColor && curSize) {
         wa.className = 'btn wa';
-        var msg = '„—Õ»«° √—Ìœ ÿ·»: ' + p.name + (curColor.name ? ' - ·Ê‰ ' + curColor.name : '') +
-                  (curSize.size ? ' - „ﬁ«” ' + curSize.size : '') + ' (ﬂÊœ ' + p.code + ')';
+        var msg = '√£√ë√ç√à√á√∞¬° √É√ë√≠√è √ò√°√à: ' + p.name + (curColor.name ? ' - √°√¶√§ ' + curColor.name : '') +
+                  (curSize.size ? ' - √£√û√á√ì ' + curSize.size : '') + ' (√ü√¶√è ' + p.code + ')';
         wa.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg);
-        wa.textContent = '«ÿ·» «·¬‰ ⁄»— Ê« ”«»';
+        wa.textContent = '√á√ò√°√à √á√°√Ç√§ √ö√à√ë √¶√á√ä√ì√á√à';
       } else {
         wa.className = 'btn off';
         wa.removeAttribute('href');
-        wa.textContent = p.inStock ? '«Œ — «··Ê‰ Ê«·„ﬁ«”' : '€Ì— „ Ê›— Õ«·Ì«';
+        wa.textContent = p.inStock ? '√á√é√ä√ë √á√°√°√¶√§ √¶√á√°√£√û√á√ì' : '√õ√≠√ë √£√ä√¶√ù√ë √ç√á√°√≠√á√∞';
       }
     }
 
@@ -487,7 +487,7 @@
       curProduct = p;
       curColor = null;
       curSize = null;
-      document.getElementById('mcode').textContent = 'ﬂÊœ: ' + p.code;
+      document.getElementById('mcode').textContent = '√ü√¶√è: ' + p.code;
       document.getElementById('mname').textContent = p.name;
       buildModalPics(p);
 
@@ -531,9 +531,9 @@
       document.getElementById('grid').innerHTML = '';
       var msg = document.getElementById('msg');
       msg.innerHTML = '';
-      msg.appendChild(document.createTextNode('ÕœÀ Œÿ√ ›Ì «· Õ„Ì·'));
+      msg.appendChild(document.createTextNode('√ç√è√ã √é√ò√É √ù√≠ √á√°√ä√ç√£√≠√°'));
       msg.appendChild(document.createElement('br'));
-      var b = el('button', '', '≈⁄«œ… «·„Õ«Ê·…');
+      var b = el('button', '', '√Ö√ö√á√è√â √á√°√£√ç√á√¶√°√â');
       b.addEventListener('click', load);
       msg.appendChild(b);
     }
