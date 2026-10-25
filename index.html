@@ -16,6 +16,18 @@
     html { -webkit-text-size-adjust: 100%; }
     body { font-family: 'Cairo', Tahoma, Arial, sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; }
 
+    /* Decorative page background: soft gold glows + fine diamond lattice */
+    body::before {
+      content: ''; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; pointer-events: none;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(184,147,90,.22) 0, rgba(184,147,90,0) 38%),
+        radial-gradient(circle at 92% 38%, rgba(184,147,90,.16) 0, rgba(184,147,90,0) 42%),
+        radial-gradient(circle at 18% 92%, rgba(26,26,26,.07) 0, rgba(26,26,26,0) 40%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M32 0L64 32L32 64L0 32Z' fill='none' stroke='%23b8935a' stroke-opacity='.16'/%3E%3Cpath d='M32 14L50 32L32 50L14 32Z' fill='none' stroke='%23b8935a' stroke-opacity='.10'/%3E%3Ccircle cx='32' cy='32' r='1.8' fill='%23b8935a' fill-opacity='.30'/%3E%3C/svg%3E");
+      background-size: auto, auto, auto, 64px 64px;
+    }
+
     .hero {
       background: linear-gradient(135deg, #1a1a1a 0%, #2e2a25 60%, #3b342b 100%);
       color: #fff; text-align: center; padding: 56px 20px 70px; position: relative; overflow: hidden;
@@ -157,7 +169,6 @@
       <div class="chips">
         <button class="chip active" data-f="all">&#x627;&#x644;&#x643;&#x644;</button>
         <button class="chip" data-f="in">&#x627;&#x644;&#x645;&#x62A;&#x648;&#x641;&#x631;</button>
-        <button class="chip" data-f="out">&#x646;&#x641;&#x630;</button>
       </div>
       <select id="sort">
         <option value="def">&#x627;&#x644;&#x62A;&#x631;&#x62A;&#x64A;&#x628; &#x627;&#x644;&#x627;&#x641;&#x62A;&#x631;&#x627;&#x636;&#x64A;</option>
