@@ -100,6 +100,26 @@
     .count { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
     #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
 
+    /* ===== Wide banner slider ===== */
+    .banner { display: none; margin-bottom: 30px; }
+    .blabel { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 15px; font-weight: 900; color: var(--gold-2); }
+    .blabel::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(216,180,114,.5), transparent); }
+    .bwrap { position: relative; }
+    .bview { overflow: hidden; border-radius: 14px; }
+    .btrack { display: flex; gap: 12px; transition: transform .8s cubic-bezier(.22,.8,.3,1); will-change: transform; }
+    .bslide { flex: none; position: relative; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; background: #2a241b; cursor: pointer; border: 1px solid var(--line); box-shadow: 0 6px 20px rgba(0,0,0,.35); transition: border-color .25s; }
+    .bslide:hover { border-color: rgba(216,180,114,.6); }
+    .bslide img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity .6s; }
+    .bslide img.on { opacity: 1; }
+    .bcap { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 12px 10px; background: linear-gradient(transparent, rgba(10,8,5,.88)); display: flex; align-items: center; justify-content: space-between; gap: 8px; z-index: 2; }
+    .bname { font-size: 13px; font-weight: 700; color: #fff; line-height: 1.4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+    .bcode { flex: none; direction: ltr; unicode-bidi: isolate; font-size: 11px; font-weight: 700; letter-spacing: .5px; color: var(--gold-2); border: 1px solid rgba(216,180,114,.5); padding: 1px 9px; border-radius: 30px; background: rgba(20,17,13,.6); }
+    .bnav { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(216,180,114,.55); background: rgba(20,17,13,.82); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); color: var(--gold-2); cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 3; box-shadow: 0 6px 18px rgba(0,0,0,.5); transition: background .2s; }
+    .bnav:hover { background: rgba(216,180,114,.25); }
+    .bnav svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .bprev { right: 8px; }
+    .bnext { left: 8px; }
+
     /* ===== Cards ===== */
     .card {
       background: var(--card); border-radius: 14px; overflow: hidden; cursor: pointer;
@@ -116,6 +136,7 @@
     .noimg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #7d7562; font-size: 14px; }
 
     .tag { position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; font-size: 12px; padding: 4px 12px; border-radius: 30px; font-weight: 700; z-index: 2; box-shadow: 0 4px 12px rgba(0,0,0,.4); }
+    .codechip { position: absolute; top: 12px; left: 12px; z-index: 2; direction: ltr; unicode-bidi: isolate; font-size: 12px; font-weight: 700; letter-spacing: .6px; color: var(--gold-2); background: rgba(20,17,13,.78); border: 1px solid rgba(216,180,114,.5); padding: 3px 11px; border-radius: 30px; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); box-shadow: 0 4px 12px rgba(0,0,0,.35); }
     .ccount { position: absolute; bottom: 10px; left: 10px; background: rgba(20,17,13,.78); color: var(--gold-2); border: 1px solid rgba(216,180,114,.35); font-size: 12px; padding: 3px 10px; border-radius: 30px; font-weight: 700; z-index: 2; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
     .soldout .imgwrap img.on { filter: grayscale(100%); opacity: .35; }
     .badge {
@@ -125,9 +146,10 @@
     }
 
     .info { padding: 14px 16px 18px; }
-    .name { font-weight: 700; font-size: 16px; margin-bottom: 8px; line-height: 1.5; color: var(--ink); }
-    .cardcode { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .5px; color: var(--gold-2); border: 1px solid rgba(216,180,114,.45); background: rgba(216,180,114,.08); padding: 2px 11px; border-radius: 30px; }
-    .spec { font-size: 12px; color: var(--muted); margin: 8px 0 10px; line-height: 1.5; }
+    .name { font-weight: 700; font-size: 16px; margin-bottom: 6px; line-height: 1.5; color: var(--ink); }
+    .spec { display: flex; flex-direction: column; gap: 3px; margin: 2px 0 12px; }
+    .sline { position: relative; padding-right: 13px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .sline::before { content: ''; position: absolute; right: 0; top: .55em; width: 5px; height: 5px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-2), var(--gold)); }
     .sizes { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; min-height: 26px; }
     .sz { font-size: 12px; font-weight: 600; padding: 3px 9px; border: 1px solid rgba(216,180,114,.38); border-radius: 6px; color: var(--gold-2); background: rgba(216,180,114,.07); }
     .sz.out { color: #766d5b; border-color: #342e23; text-decoration: line-through; background: transparent; }
@@ -149,6 +171,7 @@
     .box .det { padding: 30px 26px; display: flex; flex-direction: column; gap: 12px; justify-content: center; }
     .box .det h2 { font-size: 24px; font-weight: 900; line-height: 1.4; color: #fff; }
     .coderow { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .cardcode { display: inline-block; direction: ltr; unicode-bidi: isolate; font-size: 12px; font-weight: 700; letter-spacing: .6px; color: var(--gold-2); border: 1px solid rgba(216,180,114,.45); background: rgba(216,180,114,.08); padding: 3px 12px; border-radius: 30px; }
     .sharebtn { border: 1px solid rgba(216,180,114,.4); background: transparent; color: var(--gold-2); border-radius: 30px; padding: 4px 14px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
     .sharebtn:hover { background: rgba(216,180,114,.12); }
     .dlist { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-top: 6px; }
@@ -166,6 +189,13 @@
     .status { font-weight: 700; font-size: 14px; }
     .status.ok { color: var(--green); }
     .status.no { color: var(--red); }
+    .qrow { display: flex; align-items: center; gap: 14px; }
+    .qty { display: flex; align-items: center; gap: 4px; border: 1px solid rgba(216,180,114,.3); border-radius: 30px; padding: 2px; }
+    .qty button { width: 28px; height: 28px; border-radius: 50%; border: 0; background: transparent; color: var(--gold-2); font-size: 18px; cursor: pointer; font-family: inherit; line-height: 1; }
+    .qty button:hover { background: rgba(216,180,114,.15); }
+    .qty span { min-width: 20px; text-align: center; font-weight: 700; font-size: 14px; }
+    .qty.big button { width: 36px; height: 36px; font-size: 22px; }
+    .qty.big span { min-width: 34px; font-size: 17px; }
     .btn { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 10px; font-family: inherit; font-size: 16px; font-weight: 700; text-decoration: none; border: 0; cursor: pointer; }
     .btn.add { background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; box-shadow: 0 8px 22px rgba(216,180,114,.25); }
     .btn.wa { background: linear-gradient(135deg, #2fe07a, #1ebe5d); color: #04210f; box-shadow: 0 8px 22px rgba(37,211,102,.25); }
@@ -205,10 +235,6 @@
     .cmeta { font-size: 12px; color: var(--muted); margin: 3px 0 6px; line-height: 1.5; }
     .cprice { font-weight: 900; color: var(--gold-2); font-size: 15px; }
     .cside { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-    .qty { display: flex; align-items: center; gap: 4px; border: 1px solid rgba(216,180,114,.3); border-radius: 30px; padding: 2px; }
-    .qty button { width: 28px; height: 28px; border-radius: 50%; border: 0; background: transparent; color: var(--gold-2); font-size: 18px; cursor: pointer; font-family: inherit; line-height: 1; }
-    .qty button:hover { background: rgba(216,180,114,.15); }
-    .qty span { min-width: 20px; text-align: center; font-weight: 700; font-size: 14px; }
     .cdel { background: none; border: 0; color: #8c8370; font-size: 20px; cursor: pointer; font-family: inherit; line-height: 1; padding: 0 6px; }
     .cdel:hover { color: var(--red); }
     .cfoot { padding: 14px 18px 18px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; background: #1e1913; }
@@ -241,10 +267,16 @@
       .chip { flex: 1 0 auto; }
       #sort { width: 100%; }
       .wrap { padding: 18px 10px 90px; }
+      .banner { margin-bottom: 22px; }
+      .bnav { width: 34px; height: 34px; }
+      .bnav svg { width: 17px; height: 17px; }
+      .bname { font-size: 12px; }
+      .bcode { font-size: 10px; padding: 1px 7px; }
       #grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .info { padding: 10px 10px 14px; }
-      .name { font-size: 14px; margin-bottom: 6px; }
-      .spec { font-size: 11px; }
+      .name { font-size: 14px; margin-bottom: 4px; }
+      .sline { font-size: 11px; }
+      .codechip { top: 8px; left: 8px; font-size: 11px; padding: 2px 9px; }
       .sz { font-size: 11px; padding: 2px 7px; }
       .price { font-size: 17px; }
       .tag { top: 8px; right: 8px; font-size: 11px; padding: 3px 10px; }
@@ -290,6 +322,15 @@
   </div>
 
   <main class="wrap">
+    <section class="banner" id="banner">
+      <div class="blabel" id="blabel"></div>
+      <div class="bwrap">
+        <div class="bview" id="bview"><div class="btrack" id="btrack"></div></div>
+        <button class="bnav bprev" id="bprev" type="button" aria-label="prev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="bnav bnext" id="bnext" type="button" aria-label="next"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+      </div>
+    </section>
+
     <div class="count" id="count"></div>
     <div id="msg"></div>
     <div id="grid"></div>
@@ -334,6 +375,14 @@
         <div class="p" id="mprice"></div>
         <div class="hint" id="moffer"></div>
         <div class="status" id="mstatus"></div>
+        <div class="qrow">
+          <span class="lbl">&#x627;&#x644;&#x643;&#x645;&#x64A;&#x629;</span>
+          <div class="qty big">
+            <button id="mqplus" type="button">+</button>
+            <span id="mqty">1</span>
+            <button id="mqminus" type="button">&minus;</button>
+          </div>
+        </div>
         <button class="btn add" id="madd" type="button"></button>
       </div>
     </div>
@@ -363,12 +412,14 @@
     var BRAND = 'HoodZilla';
     var WHATSAPP = '201553265558';      // country code, no + or spaces. Leave empty to hide the button.
     var CURRENCY = '\u062c.\u0645';
-    var ROTATE_MS = 3000;               // auto image change speed (milliseconds)
+    var ROTATE_MS = 3000;               // auto image change speed on cards (milliseconds)
+    var BANNER_MS = 5000;               // auto slide speed of the wide banner (milliseconds)
+    var CODE_PREFIX = 'HZ-';            // shown before every design code
 
     var SHIP_FEE = 50;                  // shipping for a single piece (free from 2 pieces)
     var BUNDLE2 = 1250;                 // price of 2 pieces
     var BUNDLE3 = 1800;                 // price of 3 pieces
-    var SPEC_LINE = '\u0642\u0637\u0646 100% \u00b7 600-650 \u062c\u0631\u0627\u0645';   // short spec line on every card
+    var SPEC_LINES = ['\u0642\u0637\u0646 100%', '600-650 \u062c\u0631\u0627\u0645'];   // spec lines under each card name (one per line)
     var META_PIXEL_ID = '';             // put your Meta Pixel ID here (leave empty to disable)
     // ================================
 
@@ -379,6 +430,7 @@
     var curProduct = null;
     var curColor = null;
     var curSize = null;
+    var modalQty = 1;
     var rotators = [];
     var modalTimer = null;
     var modalImgs = [];
@@ -405,12 +457,15 @@
     var T_ABOUT = '\u0639\u0646 \u0627\u0644\u0645\u0646\u062a\u062c';
     var T_SHARE = '\u0645\u0634\u0627\u0631\u0643\u0629';
     var T_COPIED = '\u062a\u0645 \u0646\u0633\u062e \u0627\u0644\u0631\u0627\u0628\u0637';
+    var T_PICKS = '\u062a\u0634\u0643\u064a\u0644\u0629 \u0645\u062e\u062a\u0627\u0631\u0629';
     var T_N_ADD2 = '\u0623\u0636\u0641 \u0642\u0637\u0639\u0629 \u062b\u0627\u0646\u064a\u0629 \u0628\u0640 ';
     var T_N_ADD3 = '\u0623\u0636\u0641 \u0642\u0637\u0639\u0629 \u062b\u0627\u0644\u062b\u0629 \u0628\u0640 ';
     var T_N_ONLY = ' \u0641\u0642\u0637';
     var T_N_FREE = ' \u0641\u0642\u0637 \u0648\u0627\u062d\u0635\u0644 \u0639\u0644\u0649 \u0634\u062d\u0646 \u0645\u062c\u0627\u0646\u064a';
     var T_N_MORE = ' \u0641\u0642\u0637 \u0648\u0632\u062f \u062a\u0648\u0641\u064a\u0631\u0643';
     var T_N_BEST = '\u062a\u0645 \u062a\u0637\u0628\u064a\u0642 \u0623\u0641\u0636\u0644 \u0639\u0631\u0636';
+
+    function dcode(c) { return CODE_PREFIX + c; }
 
     document.getElementById('brand').textContent = BRAND;
     document.getElementById('foot').textContent = BRAND + ' \u00A9 ' + new Date().getFullYear();
@@ -420,6 +475,7 @@
     document.getElementById('cclear').textContent = T_CLEAR;
     document.getElementById('mshare').textContent = T_SHARE;
     document.getElementById('mdescLbl').textContent = T_ABOUT;
+    document.getElementById('blabel').textContent = T_PICKS;
 
     // Offer pills in the hero
     (function () {
@@ -557,11 +613,14 @@
 
     function getList() {
       var q = query.toLowerCase();
+      var qc = q.replace(/[\s\-]/g, '');
       var list = ALL.filter(function (p) {
         if (filter === 'in' && !p.inStock) return false;
         if (filter === 'out' && p.inStock) return false;
         if (!q) return true;
-        return p.name.toLowerCase().indexOf(q) > -1 || p.code.toLowerCase().indexOf(q) > -1;
+        return p.name.toLowerCase().indexOf(q) > -1 ||
+               p.code.toLowerCase().indexOf(q) > -1 ||
+               dcode(p.code).toLowerCase().replace(/-/g, '').indexOf(qc) > -1;
       });
       if (sortMode === 'asc') list.sort(function (a, b) { return cardPrice(a).value - cardPrice(b).value; });
       if (sortMode === 'desc') list.sort(function (a, b) { return cardPrice(b).value - cardPrice(a).value; });
@@ -580,9 +639,19 @@
 
         var wrap = el('div', 'imgwrap');
         var cols = imgColors(p);
-        if (cols.length) {
-          var imgs = cols.map(function (c) {
-            var im = makeImg(c.imageId, 600, p.name + ' ' + c.name);
+
+        // Card images: color photos + extra gallery photos (gallery photos are NOT shown inside the product window)
+        var list2 = [], seen = {};
+        cols.forEach(function (c) {
+          if (!seen[c.imageId]) { seen[c.imageId] = true; list2.push({ id: c.imageId, alt: p.name + ' ' + c.name }); }
+        });
+        (p.gallery || []).forEach(function (id) {
+          if (!seen[id]) { seen[id] = true; list2.push({ id: id, alt: p.name }); }
+        });
+
+        if (list2.length) {
+          var imgs = list2.map(function (x) {
+            var im = makeImg(x.id, 600, x.alt);
             wrap.appendChild(im);
             return im;
           });
@@ -597,19 +666,23 @@
               imgs[state.i].className = 'on';
             });
             setTimeout(function () { imgs[1].load(); }, 800);
-            wrap.appendChild(el('div', 'ccount', imgs.length + ' \u0623\u0644\u0648\u0627\u0646'));
           }
+          if (cols.length > 1) wrap.appendChild(el('div', 'ccount', cols.length + ' \u0623\u0644\u0648\u0627\u0646'));
         } else {
           wrap.appendChild(el('div', 'noimg', '\u0644\u0627 \u062a\u0648\u062c\u062f \u0635\u0648\u0631\u0629'));
         }
+        wrap.appendChild(el('div', 'codechip', dcode(p.code)));
         if (p.inStock) wrap.appendChild(el('div', 'tag', '\u0645\u062a\u0648\u0641\u0631'));
         else wrap.appendChild(el('div', 'badge', '\u0646\u0641\u0630'));
         card.appendChild(wrap);
 
         var info = el('div', 'info');
         info.appendChild(el('div', 'name', p.name));
-        info.appendChild(el('span', 'cardcode', T_CODE + ' ' + p.code));
-        if (SPEC_LINE) info.appendChild(el('div', 'spec', SPEC_LINE));
+        if (SPEC_LINES && SPEC_LINES.length) {
+          var spec = el('div', 'spec');
+          SPEC_LINES.forEach(function (t) { spec.appendChild(el('div', 'sline', t)); });
+          info.appendChild(spec);
+        }
         var sizes = el('div', 'sizes');
         allSizes(p).forEach(function (s) {
           sizes.appendChild(el('span', 'sz' + (s.inStock ? '' : ' out'), s.size));
@@ -641,6 +714,89 @@
       if (document.getElementById('modal').classList.contains('open')) return;
       rotators.forEach(function (fn) { fn(); });
     }, ROTATE_MS);
+
+    /* ---------- Wide banner slider ---------- */
+    var bnItems = [], bnIndex = 0, bnVis = 3, bnStep = 0, bnTimer = null, bnTouchX = null;
+
+    function bnMax() { return Math.max(0, bnItems.length - bnVis); }
+
+    function buildBanner() {
+      var sec = document.getElementById('banner');
+      var track = document.getElementById('btrack');
+      track.innerHTML = '';
+      bnItems = [];
+      ALL.forEach(function (p) {
+        if (!p.inStock || !p.gallery) return;
+        p.gallery.forEach(function (id) { bnItems.push({ id: id, p: p }); });
+      });
+      if (!bnItems.length) { sec.style.display = 'none'; bnStop(); return; }
+      sec.style.display = 'block';
+      bnItems.forEach(function (it) {
+        var s = el('div', 'bslide');
+        var im = makeImg(it.id, 700, it.p.name);
+        im.onload = function () { im.className = 'on'; };
+        s.appendChild(im);
+        var cap = el('div', 'bcap');
+        cap.appendChild(el('span', 'bname', it.p.name));
+        cap.appendChild(el('span', 'bcode', dcode(it.p.code)));
+        s.appendChild(cap);
+        s.addEventListener('click', function () { openModal(it.p); });
+        track.appendChild(s);
+        it.img = im;
+        it.el = s;
+      });
+      bnIndex = 0;
+      bnLayout();
+      bnStart();
+    }
+
+    function bnLayout() {
+      if (!bnItems.length) return;
+      var w = document.getElementById('bview').clientWidth;
+      if (!w) return;
+      bnVis = w >= 1000 ? 4 : (w >= 640 ? 3 : 2);
+      var gap = 12;
+      var sw = (w - gap * (bnVis - 1)) / bnVis;
+      bnItems.forEach(function (it) { it.el.style.width = sw + 'px'; });
+      bnStep = sw + gap;
+      if (bnIndex > bnMax()) bnIndex = bnMax();
+      var nav = bnItems.length > bnVis;
+      document.getElementById('bprev').style.display = nav ? 'flex' : 'none';
+      document.getElementById('bnext').style.display = nav ? 'flex' : 'none';
+      bnMove();
+    }
+
+    function bnMove() {
+      document.getElementById('btrack').style.transform = 'translateX(' + (bnIndex * bnStep) + 'px)';
+      var end = Math.min(bnItems.length, bnIndex + bnVis + 2);
+      for (var i = bnIndex; i < end; i++) bnItems[i].img.load();
+    }
+    function bnNext() { var m = bnMax(); bnIndex = bnIndex >= m ? 0 : bnIndex + 1; bnMove(); }
+    function bnPrev() { var m = bnMax(); bnIndex = bnIndex <= 0 ? m : bnIndex - 1; bnMove(); }
+    function bnStop() { if (bnTimer) { clearInterval(bnTimer); bnTimer = null; } }
+    function bnStart() {
+      bnStop();
+      if (bnItems.length > bnVis) {
+        bnTimer = setInterval(function () { if (!document.hidden) bnNext(); }, BANNER_MS);
+      }
+    }
+
+    document.getElementById('bnext').addEventListener('click', function () { bnNext(); bnStart(); });
+    document.getElementById('bprev').addEventListener('click', function () { bnPrev(); bnStart(); });
+    (function () {
+      var v = document.getElementById('bview');
+      v.addEventListener('mouseenter', bnStop);
+      v.addEventListener('mouseleave', bnStart);
+      v.addEventListener('touchstart', function (e) { bnTouchX = e.touches[0].clientX; bnStop(); }, { passive: true });
+      v.addEventListener('touchend', function (e) {
+        if (bnTouchX === null) return;
+        var dx = e.changedTouches[0].clientX - bnTouchX;
+        bnTouchX = null;
+        if (Math.abs(dx) > 40) { if (dx < 0) bnNext(); else bnPrev(); }
+        bnStart();
+      });
+    })();
+    window.addEventListener('resize', bnLayout);
 
     /* ---------- Direct links ---------- */
     function setHash(code) {
@@ -685,6 +841,7 @@
       modalIdx = i;
     }
 
+    // Product window shows color photos only (gallery photos are not included)
     function buildModalPics(p) {
       var pic = document.getElementById('mpic');
       pic.innerHTML = '';
@@ -776,11 +933,19 @@
       }
     }
 
+    function setQty(n) {
+      modalQty = Math.max(1, Math.min(99, n));
+      document.getElementById('mqty').textContent = modalQty;
+    }
+    document.getElementById('mqplus').addEventListener('click', function () { setQty(modalQty + 1); });
+    document.getElementById('mqminus').addEventListener('click', function () { setQty(modalQty - 1); });
+
     function openModal(p) {
       curProduct = p;
       curColor = null;
       curSize = null;
-      document.getElementById('mcode').textContent = T_CODE + ' ' + p.code;
+      setQty(1);
+      document.getElementById('mcode').textContent = dcode(p.code);
       document.getElementById('mname').textContent = p.name;
 
       // description bullets
@@ -881,7 +1046,7 @@
       var found = null;
       for (var i = 0; i < cart.length; i++) { if (cart[i].key === key) { found = cart[i]; break; } }
       if (found) {
-        if (found.qty < 99) found.qty++;
+        found.qty = Math.min(99, found.qty + modalQty);
       } else {
         var imgId = curColor.imageId || '';
         if (!imgId) {
@@ -892,13 +1057,13 @@
         cart.push({
           key: key, code: curProduct.code, name: curProduct.name,
           color: curColor.name || '', size: curSize.size || '',
-          price: curSize.price, imageId: imgId, qty: 1
+          price: curSize.price, imageId: imgId, qty: modalQty
         });
       }
       saveCart();
       updateBadge();
       bumpCart();
-      track('AddToCart', { content_ids: [curProduct.code], content_name: curProduct.name, content_type: 'product', value: toNum(curSize.price), currency: 'EGP' });
+      track('AddToCart', { content_ids: [curProduct.code], content_name: curProduct.name, content_type: 'product', value: toNum(curSize.price) * modalQty, currency: 'EGP' });
       closeModal();
       showToast(T_ADDED);
     }
@@ -923,7 +1088,7 @@
         var line = (i + 1) + ') ' + it.name +
           (it.color ? ' - ' + T_COLOR + ' ' + it.color : '') +
           (it.size ? ' - ' + T_SIZE + ' ' + it.size : '') +
-          ' (' + T_CODE + ' ' + it.code + ') \u00d7 ' + it.qty;
+          ' (' + T_CODE + ' ' + dcode(it.code) + ') \u00d7 ' + it.qty;
         lines.push(line);
       });
       lines.push('');
@@ -972,7 +1137,7 @@
         var meta = [];
         if (it.color) meta.push(T_COLOR + ': ' + it.color);
         if (it.size) meta.push(T_SIZE + ': ' + it.size);
-        meta.push(T_CODE + ': ' + it.code);
+        meta.push(T_CODE + ': ' + dcode(it.code));
         info.appendChild(el('div', 'cmeta', meta.join('  |  ')));
         info.appendChild(el('div', 'cprice', fmt(toNum(it.price) * it.qty) + ' ' + CURRENCY));
         row.appendChild(info);
@@ -1106,6 +1271,7 @@
         if (!data || !data.ok) { showError(); return; }
         ALL = data.products || [];
         render();
+        buildBanner();
         if (!hashHandled) { hashHandled = true; openFromHash(); }
       };
 
