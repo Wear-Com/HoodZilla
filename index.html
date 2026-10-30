@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#1c1812">
   <title>HoodZilla</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -57,12 +58,12 @@
     .hero-edge { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
     .brand {
       display: inline-block; font-size: clamp(26px, 7vw, 40px); letter-spacing: 9px; margin-bottom: 16px; font-weight: 900; line-height: 1.2;
-      background: linear-gradient(110deg, #f4dfaa 0%, #fff8e1 38%, #f7dc96 55%, #f4dfaa 100%);
-      background-size: 220% 100%; -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent; color: transparent; animation: shine 6s linear infinite;
+      background: linear-gradient(90deg, #c28f3a 0%, #efcd84 22%, #fffaf0 50%, #efcd84 78%, #c28f3a 100%);
+      background-size: 200% 100%; background-repeat: repeat-x; -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent; animation: shine 3.6s linear infinite;
       filter: drop-shadow(0 2px 14px rgba(216,180,114,.4));
     }
-    @keyframes shine { to { background-position: -220% 0; } }
+    @keyframes shine { from { background-position: 0 0; } to { background-position: -200% 0; } }
     .hero h1 { font-size: clamp(26px, 6vw, 52px); font-weight: 900; line-height: 1.3; margin-bottom: 12px; color: #fff; }
     .hero h1 span {
       background: linear-gradient(110deg, var(--gold-3), var(--gold-2), var(--gold));
@@ -97,12 +98,12 @@
     #sort { padding: 10px 12px; font-family: inherit; font-size: 16px; color: var(--ink); border: 1px solid rgba(216,180,114,.20); border-radius: 10px; background: var(--panel); cursor: pointer; }
     #sort option { background: #231e17; color: var(--ink); }
 
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 26px 16px 90px; }
-    .count { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 22px 16px 90px; }
+    .count { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
     #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
 
     /* ===== Wide banner (swipe + dots) ===== */
-    .banner { display: none; margin-bottom: 30px; }
+    .banner { display: none; margin-bottom: 26px; }
     .blabel { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 15px; font-weight: 900; color: var(--gold-2); }
     .blabel::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(216,180,114,.5), transparent); }
     .bview { overflow-x: auto; overflow-y: hidden; direction: ltr; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; border-radius: 14px; }
@@ -160,6 +161,7 @@
     .skel { height: 360px; border-radius: 14px; border: 1px solid var(--line); background: linear-gradient(90deg,#231e17 25%,#322b20 50%,#231e17 75%); background-size: 200% 100%; animation: sh 1.2s infinite; }
     @keyframes sh { to { background-position: -200% 0; } }
     #msg { text-align: center; color: var(--muted); padding: 40px 10px; font-size: 16px; }
+    #msg:empty { display: none; }
     #msg button { margin-top: 12px; padding: 10px 24px; border: 0; border-radius: 30px; background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; font-weight: 700; font-family: inherit; font-size: 15px; cursor: pointer; }
 
     /* ===== Product modal ===== */
@@ -233,11 +235,13 @@
     #cart { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0,0,0,.78); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; padding: 16px; z-index: 60; }
     #cart.open { display: flex; }
     .cpanel { background: linear-gradient(180deg, #2b251c, #1e1913); border: 1px solid rgba(216,180,114,.38); border-radius: 16px; width: 100%; max-width: 480px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.65), 0 0 60px rgba(216,180,114,.10); }
-    .chead { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+    .chead { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--line); flex: none; }
     .chead h3 { font-size: 19px; font-weight: 900; color: var(--gold-2); }
     #cclose { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(216,180,114,.4); background: rgba(20,17,13,.85); color: var(--gold-2); font-size: 22px; cursor: pointer; font-family: inherit; line-height: 1; }
-    .cnudge { margin: 12px 14px 0; padding: 10px 14px; border-radius: 10px; border: 1px dashed rgba(216,180,114,.5); background: rgba(216,180,114,.07); color: var(--gold-2); font-size: 13px; font-weight: 700; text-align: center; line-height: 1.6; display: none; }
-    #clist { overflow: auto; -webkit-overflow-scrolling: touch; padding: 12px 14px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    #cscroll { flex: 1; min-height: 0; overflow: auto; -webkit-overflow-scrolling: touch; padding: 12px 14px; display: flex; flex-direction: column; gap: 12px; }
+    #cscroll > * { flex: none; }
+    .cnudge { padding: 10px 14px; border-radius: 10px; border: 1px dashed rgba(216,180,114,.5); background: rgba(216,180,114,.07); color: var(--gold-2); font-size: 13px; font-weight: 700; text-align: center; line-height: 1.6; display: none; }
+    #clist { display: flex; flex-direction: column; gap: 12px; }
     .citem { display: flex; gap: 12px; align-items: center; background: rgba(255,255,255,.03); border: 1px solid rgba(216,180,114,.16); border-radius: 12px; padding: 10px; }
     .cthumb { position: relative; width: 64px; height: 84px; flex: none; border-radius: 8px; overflow: hidden; background: #2a241b; }
     .cthumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -248,10 +252,10 @@
     .cside { display: flex; flex-direction: column; align-items: center; gap: 8px; }
     .cdel { background: none; border: 0; color: #8c8370; font-size: 20px; cursor: pointer; font-family: inherit; line-height: 1; padding: 0 6px; }
     .cdel:hover { color: var(--red); }
-    .cfoot { padding: 14px 18px 18px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; background: #1e1913; }
+    .cfoot { padding: 12px 18px 16px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; background: #1e1913; flex: none; }
     .promo { display: flex; flex-direction: column; gap: 6px; }
     .prow { display: flex; gap: 8px; }
-    #pinput { flex: 1; min-width: 0; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(216,180,114,.25); background: var(--panel); color: var(--ink); font-family: inherit; font-size: 15px; outline: none; text-align: center; letter-spacing: 1px; }
+    #pinput { flex: 1; min-width: 0; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(216,180,114,.25); background: var(--panel); color: var(--ink); font-family: inherit; font-size: 15px; outline: none; direction: ltr; text-align: center; letter-spacing: 1px; }
     #pinput:focus { border-color: var(--gold); }
     #pinput::placeholder { color: #8c8370; letter-spacing: 0; }
     #papply { padding: 0 18px; border-radius: 10px; border: 1px solid var(--gold); background: transparent; color: var(--gold-2); font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
@@ -260,12 +264,12 @@
     .pmsg.bad { color: var(--red); }
     .pmsg.ok { color: var(--green); display: flex; justify-content: space-between; align-items: center; }
     .pmsg button { background: none; border: 0; color: var(--muted); font-size: 20px; cursor: pointer; line-height: 1; }
-    .csum { display: flex; flex-direction: column; gap: 6px; }
+    .csum { display: flex; flex-direction: column; gap: 6px; padding: 0 2px; }
     .srow { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
     .srow b { color: var(--ink); font-weight: 700; }
     .srow.disc b, .srow.free b { color: var(--green); }
     .sins { font-size: 12px; font-weight: 700; color: var(--green); }
-    .ctotal { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; padding-top: 8px; border-top: 1px solid var(--line); }
+    .ctotal { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; }
     .ctotal b { font-size: 24px; color: var(--gold-2); font-weight: 900; }
     .ctotal b small { font-size: 13px; color: var(--gold); margin-right: 4px; font-weight: 600; }
     .clear { background: none; border: 0; color: var(--muted); font-family: inherit; font-size: 13px; cursor: pointer; text-decoration: underline; align-self: center; }
@@ -289,8 +293,8 @@
       .chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
       .chip { flex: 1 0 auto; }
       #sort { width: 100%; }
-      .wrap { padding: 18px 10px 90px; }
-      .banner { margin-bottom: 22px; }
+      .wrap { padding: 16px 10px 90px; }
+      .banner { margin-bottom: 20px; }
       .bname { font-size: 12px; }
       .bcode { font-size: 10px; padding: 1px 7px; }
       #grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
@@ -310,7 +314,7 @@
       .box .det { padding: 20px 18px 26px; gap: 10px; }
       .box .det h2 { font-size: 20px; }
       .box .det .p { font-size: 26px; min-height: 0; }
-      .cpanel { max-width: none; border-radius: 18px 18px 0 0; max-height: 90vh; }
+      .cpanel { max-width: none; border-radius: 18px 18px 0 0; max-height: 92vh; }
       #fab { width: 50px; height: 50px; bottom: 14px; left: 14px; }
       #cartfab { width: 54px; height: 54px; bottom: 14px; right: 14px; }
       #toast { bottom: 80px; }
@@ -321,7 +325,7 @@
 
   <header class="hero">
     <div class="brand" id="brand"></div>
-    <h1>&#x623;&#x646;&#x627;&#x642;&#x62A;&#x643; &#x62A;&#x628;&#x62F;&#x623; &#x645;&#x646; <span>&#x647;&#x646;&#x627;</span></h1>
+    <h1>&#x623;&#x646;&#x627;&#x642;&#x643; &#x62A;&#x628;&#x62F;&#x623; &#x645;&#x646; <span>&#x647;&#x646;&#x627;</span></h1>
     <p>&#x62A;&#x634;&#x643;&#x64A;&#x644;&#x629; &#x645;&#x62E;&#x62A;&#x627;&#x631;&#x629; &#x628;&#x639;&#x646;&#x627;&#x64A;&#x629; &#x645;&#x646; &#x623;&#x62D;&#x62F;&#x62B; &#x627;&#x644;&#x645;&#x648;&#x62F;&#x64A;&#x644;&#x627;&#x62A;&#x60C; &#x628;&#x62C;&#x648;&#x62F;&#x629; &#x639;&#x627;&#x644;&#x64A;&#x629; &#x648;&#x623;&#x633;&#x639;&#x627;&#x631; &#x62A;&#x646;&#x627;&#x633;&#x628;&#x643;</p>
     <div class="offers" id="offers"></div>
     <div class="line"></div>
@@ -414,17 +418,19 @@
         <h3 id="ctitle"></h3>
         <button id="cclose" type="button" aria-label="close">&times;</button>
       </div>
-      <div class="cnudge" id="cnudge"></div>
-      <div id="clist"></div>
-      <div class="cfoot" id="cfoot">
-        <div class="promo">
+      <div id="cscroll">
+        <div class="cnudge" id="cnudge"></div>
+        <div id="clist"></div>
+        <div class="promo" id="promobox">
           <div class="prow" id="prow">
-            <input id="pinput" type="text" autocomplete="off" autocapitalize="characters">
+            <input id="pinput" type="text" dir="ltr" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false">
             <button id="papply" type="button"></button>
           </div>
           <div class="pmsg" id="pmsg"></div>
         </div>
         <div class="csum" id="csum"></div>
+      </div>
+      <div class="cfoot" id="cfoot">
         <div class="ctotal"><span id="ctotlbl"></span><b id="ctot"></b></div>
         <a class="btn wa" id="csend" target="_blank" rel="noopener"></a>
         <button class="clear" id="cclear" type="button"></button>
@@ -585,9 +591,18 @@
       }).filter(function (x) { return x.length > 0; });
     }
 
-    // Several image sources, tried in order until one works
+    /* ---------- Images: sized to the screen (sharp on retina), WebP first, lazy loading ---------- */
+    function pxW(cssW, cap) {
+      var d = Math.min(window.devicePixelRatio || 1, 2);
+      return Math.min(cap || 1200, Math.max(200, Math.ceil(cssW * d / 100) * 100));
+    }
+    function cardCssW() { var vw = window.innerWidth; return vw <= 640 ? (vw - 30) / 2 : 260; }
+    function bannerCssW() { var vw = window.innerWidth; return vw >= 1000 ? 290 : (vw >= 640 ? 230 : vw / 2); }
+    function modalCssW() { var vw = window.innerWidth; return vw <= 640 ? vw : 430; }
+
     function imgSources(id, w) {
       return [
+        'https://lh3.googleusercontent.com/d/' + id + '=w' + w + '-rw',
         'https://lh3.googleusercontent.com/d/' + id + '=w' + w,
         'https://drive.google.com/thumbnail?id=' + id + '&sz=w' + w,
         'https://drive.google.com/uc?export=view&id=' + id
@@ -599,6 +614,7 @@
       var img = document.createElement('img');
       img.alt = alt;
       img.referrerPolicy = 'no-referrer';
+      img.decoding = 'async';
       var srcs = imgSources(id, w);
       var n = 0, started = false;
       img.onerror = function () {
@@ -620,6 +636,11 @@
       };
       return img;
     }
+
+    // Load card images only when the card is near the screen
+    var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) { if (en.target._vis) en.target._vis(en.isIntersecting); });
+    }, { rootMargin: '300px 0px' }) : null;
 
     // Colors that have an image (in-stock first choice)
     function imgColors(p) {
@@ -694,8 +715,10 @@
     function render() {
       var list = getList();
       var grid = $('grid');
+      if (io) io.disconnect();
       grid.innerHTML = '';
       rotators = [];
+      var cw = pxW(cardCssW(), 800);
 
       list.forEach(function (p, idx) {
         var card = el('div', 'card' + (p.inStock ? '' : ' soldout'));
@@ -705,21 +728,30 @@
         var list2 = cardImgs(p);
         if (list2.length) {
           var imgs = list2.map(function (x) {
-            var im = makeImg(x.id, 600, x.alt);
+            var im = makeImg(x.id, cw, x.alt);
             wrap.appendChild(im);
             return im;
           });
-          imgs[0].load();
-          imgs[0].className = 'on';
+          var state = { i: 0, vis: !io, first: false };
+          var onVis = function (v) {
+            state.vis = v;
+            if (v && !state.first) {
+              state.first = true;
+              imgs[0].load();
+              imgs[0].className = 'on';
+              if (imgs.length > 1) setTimeout(function () { imgs[1].load(); }, 800);
+            }
+          };
+          wrap._vis = onVis;
+          if (io) io.observe(wrap); else onVis(true);
           if (imgs.length > 1) {
-            var state = { i: 0 };
             rotators.push(function () {
+              if (!state.vis) return;
               imgs[state.i].className = '';
               state.i = (state.i + 1) % imgs.length;
               imgs[state.i].load();
               imgs[state.i].className = 'on';
             });
-            setTimeout(function () { imgs[1].load(); }, 800);
           }
           var nc = imgColors(p).length;
           if (nc > 1) wrap.appendChild(el('div', 'ccount', nc + ' \u0623\u0644\u0648\u0627\u0646'));
@@ -765,7 +797,7 @@
       $('count').textContent = list.length ? list.length + ' \u062f\u064a\u0632\u0627\u064a\u0646' : '';
     }
 
-    // One global timer for all cards
+    // One global timer for all cards (only cards near the screen rotate)
     setInterval(function () {
       if ($('modal').classList.contains('open')) return;
       rotators.forEach(function (fn) { fn(); });
@@ -784,9 +816,10 @@
       });
       if (!bnItems.length) { sec.style.display = 'none'; if (bnTimer) { clearInterval(bnTimer); bnTimer = null; } return; }
       sec.style.display = 'block';
+      var bw = pxW(bannerCssW(), 800);
       bnItems.forEach(function (it) {
         var s = el('div', 'bslide');
-        var im = makeImg(it.id, 700, it.p.name);
+        var im = makeImg(it.id, bw, it.p.name);
         im.onload = function () { im.className = 'on'; };
         s.appendChild(im);
         var cap = el('div', 'bcap');
@@ -921,8 +954,9 @@
       stopModalTimer();
       var cols = p.colors.filter(function (c) { return c.imageId; });
       if (!cols.length) { pic.appendChild(el('div', 'noimg', '\u0644\u0627 \u062a\u0648\u062c\u062f \u0635\u0648\u0631\u0629')); return; }
+      var mw = pxW(modalCssW(), 1000);
       cols.forEach(function (c) {
-        var im = makeImg(c.imageId, 1000, p.name + ' ' + c.name);
+        var im = makeImg(c.imageId, mw, p.name + ' ' + c.name);
         pic.appendChild(im);
         modalImgs.push({ color: c, img: im });
       });
@@ -1250,9 +1284,13 @@
         list.appendChild(el('div', 'cempty', T_EMPTY));
         foot.style.display = 'none';
         nudge.style.display = 'none';
+        $('promobox').style.display = 'none';
+        $('csum').style.display = 'none';
         return;
       }
       foot.style.display = 'flex';
+      $('promobox').style.display = 'flex';
+      $('csum').style.display = 'flex';
 
       cart.forEach(function (it) {
         var row = el('div', 'citem');
