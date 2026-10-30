@@ -57,9 +57,10 @@
     .hero-edge { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
     .brand {
       display: inline-block; font-size: clamp(26px, 7vw, 40px); letter-spacing: 9px; margin-bottom: 16px; font-weight: 900; line-height: 1.2;
-      background: linear-gradient(110deg, var(--gold-3) 0%, var(--gold-2) 40%, var(--gold) 55%, var(--gold-3) 100%);
+      background: linear-gradient(110deg, #f4dfaa 0%, #fff8e1 38%, #f7dc96 55%, #f4dfaa 100%);
       background-size: 220% 100%; -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent; color: transparent; animation: shine 6s linear infinite;
+      filter: drop-shadow(0 2px 14px rgba(216,180,114,.4));
     }
     @keyframes shine { to { background-position: -220% 0; } }
     .hero h1 { font-size: clamp(26px, 6vw, 52px); font-weight: 900; line-height: 1.3; margin-bottom: 12px; color: #fff; }
@@ -100,25 +101,23 @@
     .count { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
     #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
 
-    /* ===== Wide banner slider ===== */
+    /* ===== Wide banner (swipe + dots) ===== */
     .banner { display: none; margin-bottom: 30px; }
     .blabel { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 15px; font-weight: 900; color: var(--gold-2); }
     .blabel::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(216,180,114,.5), transparent); }
-    .bwrap { position: relative; }
-    .bview { overflow: hidden; border-radius: 14px; }
-    .btrack { display: flex; gap: 12px; transition: transform .8s cubic-bezier(.22,.8,.3,1); will-change: transform; }
-    .bslide { flex: none; position: relative; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; background: #2a241b; cursor: pointer; border: 1px solid var(--line); box-shadow: 0 6px 20px rgba(0,0,0,.35); transition: border-color .25s; }
+    .bview { overflow-x: auto; overflow-y: hidden; direction: ltr; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; border-radius: 14px; }
+    .bview::-webkit-scrollbar { display: none; height: 0; }
+    .btrack { display: flex; gap: 12px; }
+    .bslide { flex: none; position: relative; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; background: #2a241b; cursor: pointer; border: 1px solid var(--line); box-shadow: 0 6px 20px rgba(0,0,0,.35); transition: border-color .25s; scroll-snap-align: start; direction: rtl; }
     .bslide:hover { border-color: rgba(216,180,114,.6); }
     .bslide img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity .6s; }
     .bslide img.on { opacity: 1; }
     .bcap { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 12px 10px; background: linear-gradient(transparent, rgba(10,8,5,.88)); display: flex; align-items: center; justify-content: space-between; gap: 8px; z-index: 2; }
     .bname { font-size: 13px; font-weight: 700; color: #fff; line-height: 1.4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
     .bcode { flex: none; direction: ltr; unicode-bidi: isolate; font-size: 11px; font-weight: 700; letter-spacing: .5px; color: var(--gold-2); border: 1px solid rgba(216,180,114,.5); padding: 1px 9px; border-radius: 30px; background: rgba(20,17,13,.6); }
-    .bnav { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(216,180,114,.55); background: rgba(20,17,13,.82); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); color: var(--gold-2); cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 3; box-shadow: 0 6px 18px rgba(0,0,0,.5); transition: background .2s; }
-    .bnav:hover { background: rgba(216,180,114,.25); }
-    .bnav svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-    .bprev { right: 8px; }
-    .bnext { left: 8px; }
+    .bdots { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 12px; direction: ltr; }
+    .bdot { width: 8px; height: 8px; border-radius: 8px; border: 0; padding: 0; background: rgba(216,180,114,.3); cursor: pointer; transition: all .3s; }
+    .bdot.on { width: 24px; background: linear-gradient(135deg, var(--gold-2), var(--gold)); }
 
     /* ===== Cards ===== */
     .card {
@@ -135,9 +134,9 @@
     .imgwrap img.on, .pic img.on { opacity: 1; }
     .noimg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #7d7562; font-size: 14px; }
 
-    .tag { position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; font-size: 12px; padding: 4px 12px; border-radius: 30px; font-weight: 700; z-index: 2; box-shadow: 0 4px 12px rgba(0,0,0,.4); }
-    .codechip { position: absolute; top: 12px; left: 12px; z-index: 2; direction: ltr; unicode-bidi: isolate; font-size: 12px; font-weight: 700; letter-spacing: .6px; color: var(--gold-2); background: rgba(20,17,13,.78); border: 1px solid rgba(216,180,114,.5); padding: 3px 11px; border-radius: 30px; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); box-shadow: 0 4px 12px rgba(0,0,0,.35); }
-    .ccount { position: absolute; bottom: 10px; left: 10px; background: rgba(20,17,13,.78); color: var(--gold-2); border: 1px solid rgba(216,180,114,.35); font-size: 12px; padding: 3px 10px; border-radius: 30px; font-weight: 700; z-index: 2; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+    .tag { position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; font-size: 11px; padding: 2px 10px; border-radius: 30px; font-weight: 700; z-index: 2; box-shadow: 0 4px 12px rgba(0,0,0,.4); }
+    .codechip { position: absolute; top: 10px; left: 10px; z-index: 2; direction: ltr; unicode-bidi: isolate; font-size: 11px; font-weight: 700; letter-spacing: .5px; color: var(--gold-2); background: rgba(20,17,13,.78); border: 1px solid rgba(216,180,114,.5); padding: 2px 10px; border-radius: 30px; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); box-shadow: 0 4px 12px rgba(0,0,0,.35); }
+    .ccount { position: absolute; bottom: 8px; left: 8px; background: rgba(20,17,13,.78); color: var(--gold-2); border: 1px solid rgba(216,180,114,.35); font-size: 11px; padding: 2px 9px; border-radius: 30px; font-weight: 700; z-index: 2; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
     .soldout .imgwrap img.on { filter: grayscale(100%); opacity: .35; }
     .badge {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-10deg); z-index: 2;
@@ -202,7 +201,7 @@
     .btn.off { background: #2f291f; color: #766d5b; box-shadow: none; pointer-events: none; }
     #close { position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(216,180,114,.4); background: rgba(20,17,13,.85); color: var(--gold-2); font-size: 24px; cursor: pointer; z-index: 5; box-shadow: 0 2px 10px rgba(0,0,0,.5); }
 
-    /* ===== Floating buttons ===== */
+    /* ===== Floating buttons (with hover labels) ===== */
     #fab { position: fixed; bottom: 18px; left: 18px; width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2fe07a, #1ebe5d); box-shadow: 0 10px 26px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.15) inset; z-index: 40; transition: transform .2s; }
     #fab:hover { transform: scale(1.08); }
     #fab svg { width: 28px; height: 28px; fill: #04210f; }
@@ -213,6 +212,18 @@
     #cartfab.bump { animation: bump .45s ease; }
     @keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.22); } 100% { transform: scale(1); } }
     #cbadge { position: absolute; top: -5px; left: -5px; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 12px; background: #14110d; color: var(--gold-2); border: 1px solid var(--gold); font-size: 13px; font-weight: 700; display: none; align-items: center; justify-content: center; font-family: inherit; }
+
+    #fab::after, #cartfab::after {
+      content: attr(data-tip); position: absolute; top: 50%; opacity: 0; pointer-events: none; white-space: nowrap; direction: ltr;
+      background: rgba(20,17,13,.95); color: var(--gold-2); border: 1px solid rgba(216,180,114,.45);
+      padding: 5px 12px; border-radius: 30px; font-size: 12px; font-weight: 700; font-family: 'Cairo', Arial, sans-serif;
+      box-shadow: 0 6px 18px rgba(0,0,0,.45); transition: opacity .2s, transform .2s;
+    }
+    #fab::after { left: calc(100% + 10px); transform: translateY(-50%) translateX(-6px); }
+    #cartfab::after { right: calc(100% + 10px); transform: translateY(-50%) translateX(6px); }
+    @media (hover: hover) {
+      #fab:hover::after, #cartfab:hover::after, #fab:focus-visible::after, #cartfab:focus-visible::after { opacity: 1; transform: translateY(-50%); }
+    }
 
     /* ===== Toast ===== */
     #toast { position: fixed; bottom: 92px; left: 50%; transform: translate(-50%, 20px); opacity: 0; background: rgba(20,17,13,.96); border: 1px solid rgba(216,180,114,.5); color: var(--gold-2); padding: 10px 22px; border-radius: 30px; font-weight: 700; font-size: 14px; z-index: 70; pointer-events: none; transition: .3s; white-space: nowrap; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
@@ -238,10 +249,22 @@
     .cdel { background: none; border: 0; color: #8c8370; font-size: 20px; cursor: pointer; font-family: inherit; line-height: 1; padding: 0 6px; }
     .cdel:hover { color: var(--red); }
     .cfoot { padding: 14px 18px 18px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; background: #1e1913; }
+    .promo { display: flex; flex-direction: column; gap: 6px; }
+    .prow { display: flex; gap: 8px; }
+    #pinput { flex: 1; min-width: 0; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(216,180,114,.25); background: var(--panel); color: var(--ink); font-family: inherit; font-size: 15px; outline: none; text-align: center; letter-spacing: 1px; }
+    #pinput:focus { border-color: var(--gold); }
+    #pinput::placeholder { color: #8c8370; letter-spacing: 0; }
+    #papply { padding: 0 18px; border-radius: 10px; border: 1px solid var(--gold); background: transparent; color: var(--gold-2); font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
+    #papply:hover { background: rgba(216,180,114,.15); }
+    .pmsg { font-size: 13px; font-weight: 700; }
+    .pmsg.bad { color: var(--red); }
+    .pmsg.ok { color: var(--green); display: flex; justify-content: space-between; align-items: center; }
+    .pmsg button { background: none; border: 0; color: var(--muted); font-size: 20px; cursor: pointer; line-height: 1; }
     .csum { display: flex; flex-direction: column; gap: 6px; }
     .srow { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
     .srow b { color: var(--ink); font-weight: 700; }
     .srow.disc b, .srow.free b { color: var(--green); }
+    .sins { font-size: 12px; font-weight: 700; color: var(--green); }
     .ctotal { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; padding-top: 8px; border-top: 1px solid var(--line); }
     .ctotal b { font-size: 24px; color: var(--gold-2); font-weight: 900; }
     .ctotal b small { font-size: 13px; color: var(--gold); margin-right: 4px; font-weight: 600; }
@@ -268,18 +291,17 @@
       #sort { width: 100%; }
       .wrap { padding: 18px 10px 90px; }
       .banner { margin-bottom: 22px; }
-      .bnav { width: 34px; height: 34px; }
-      .bnav svg { width: 17px; height: 17px; }
       .bname { font-size: 12px; }
       .bcode { font-size: 10px; padding: 1px 7px; }
       #grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .info { padding: 10px 10px 14px; }
       .name { font-size: 14px; margin-bottom: 4px; }
       .sline { font-size: 11px; }
-      .codechip { top: 8px; left: 8px; font-size: 11px; padding: 2px 9px; }
+      .codechip { top: 7px; left: 7px; font-size: 10px; padding: 1px 8px; }
+      .tag { top: 7px; right: 7px; font-size: 10px; padding: 1px 8px; }
+      .ccount { font-size: 10px; padding: 1px 8px; bottom: 7px; left: 7px; }
       .sz { font-size: 11px; padding: 2px 7px; }
       .price { font-size: 17px; }
-      .tag { top: 8px; right: 8px; font-size: 11px; padding: 3px 10px; }
       .badge { font-size: 18px; padding: 4px 16px; }
       .skel { height: 260px; }
       #modal, #cart { padding: 0; align-items: flex-end; }
@@ -324,11 +346,8 @@
   <main class="wrap">
     <section class="banner" id="banner">
       <div class="blabel" id="blabel"></div>
-      <div class="bwrap">
-        <div class="bview" id="bview"><div class="btrack" id="btrack"></div></div>
-        <button class="bnav bprev" id="bprev" type="button" aria-label="prev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
-        <button class="bnav bnext" id="bnext" type="button" aria-label="next"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
-      </div>
+      <div class="bview" id="bview"><div class="btrack" id="btrack"></div></div>
+      <div class="bdots" id="bdots"></div>
     </section>
 
     <div class="count" id="count"></div>
@@ -338,11 +357,11 @@
 
   <footer id="foot"></footer>
 
-  <a id="fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <a id="fab" data-tip="WhatsApp" target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.17c-.25.7-1.45 1.34-2 1.39-.51.05-1 .24-3.37-.7-2.85-1.12-4.65-4.05-4.79-4.24-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.25.59.84 2.05.91 2.2.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.65-.14.26.1 1.66.78 1.94.92.28.14.47.21.54.33.07.12.07.69-.18 1.39z"/></svg>
   </a>
 
-  <button id="cartfab" type="button" aria-label="cart">
+  <button id="cartfab" data-tip="Cart" type="button" aria-label="cart">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
     <span id="cbadge">0</span>
   </button>
@@ -398,6 +417,13 @@
       <div class="cnudge" id="cnudge"></div>
       <div id="clist"></div>
       <div class="cfoot" id="cfoot">
+        <div class="promo">
+          <div class="prow" id="prow">
+            <input id="pinput" type="text" autocomplete="off" autocapitalize="characters">
+            <button id="papply" type="button"></button>
+          </div>
+          <div class="pmsg" id="pmsg"></div>
+        </div>
         <div class="csum" id="csum"></div>
         <div class="ctotal"><span id="ctotlbl"></span><b id="ctot"></b></div>
         <a class="btn wa" id="csend" target="_blank" rel="noopener"></a>
@@ -419,11 +445,13 @@
     var SHIP_FEE = 50;                  // shipping for a single piece (free from 2 pieces)
     var BUNDLE2 = 1250;                 // price of 2 pieces
     var BUNDLE3 = 1800;                 // price of 3 pieces
-    var SPEC_LINES = ['\u0642\u0637\u0646 100%', '600-650 \u062c\u0631\u0627\u0645'];   // spec lines under each card name (one per line)
+    var SPEC_LINES = ['\u0642\u0637\u0646 100%', '600-650 \u062c\u0631\u0627\u0645'];   // used only if the Excel spec column (F) is empty
     var META_PIXEL_ID = '';             // put your Meta Pixel ID here (leave empty to disable)
     // ================================
 
     var ALL = [];
+    var PROMOS = [];
+    var promoApplied = null;
     var filter = 'all';
     var sortMode = 'def';
     var query = '';
@@ -438,6 +466,8 @@
     var cart = [];
     var toastTimer = null;
     var hashHandled = false;
+    var modalPushed = false;
+    var cartPushed = false;
 
     var T_ADD = '\u0623\u0636\u0641 \u0625\u0644\u0649 \u0627\u0644\u0633\u0644\u0629';
     var T_CART = '\u0627\u0644\u0633\u0644\u0629';
@@ -458,6 +488,14 @@
     var T_SHARE = '\u0645\u0634\u0627\u0631\u0643\u0629';
     var T_COPIED = '\u062a\u0645 \u0646\u0633\u062e \u0627\u0644\u0631\u0627\u0628\u0637';
     var T_PICKS = '\u062a\u0634\u0643\u064a\u0644\u0629 \u0645\u062e\u062a\u0627\u0631\u0629';
+    var T_INSPECT = '\u0645\u062a\u0627\u062d \u0627\u0644\u0645\u0639\u0627\u064a\u0646\u0629 \u0642\u0628\u0644 \u0627\u0644\u0627\u0633\u062a\u0644\u0627\u0645';
+    var T_FREESHIP = '\u0634\u062d\u0646 \u0645\u062c\u0627\u0646\u064a \u0639\u0644\u0649 \u0642\u0637\u0639\u062a\u064a\u0646 \u0641\u0623\u0643\u062b\u0631';
+    var T_PROMO_PH = '\u0643\u0648\u062f \u0627\u0644\u062e\u0635\u0645';
+    var T_PROMO_BTN = '\u062a\u0637\u0628\u064a\u0642';
+    var T_P_BAD = '\u0627\u0644\u0643\u0648\u062f \u063a\u064a\u0631 \u0635\u062d\u064a\u062d';
+    var T_P_OK = '\u062a\u0645 \u062a\u0637\u0628\u064a\u0642 \u0627\u0644\u0643\u0648\u062f';
+    var T_PROMO_ROW = '\u062e\u0635\u0645 \u0627\u0644\u0643\u0648\u062f';
+    var T_PROMO_LINE = '\u0643\u0648\u062f \u0627\u0644\u062e\u0635\u0645';
     var T_N_ADD2 = '\u0623\u0636\u0641 \u0642\u0637\u0639\u0629 \u062b\u0627\u0646\u064a\u0629 \u0628\u0640 ';
     var T_N_ADD3 = '\u0623\u0636\u0641 \u0642\u0637\u0639\u0629 \u062b\u0627\u0644\u062b\u0629 \u0628\u0640 ';
     var T_N_ONLY = ' \u0641\u0642\u0637';
@@ -465,29 +503,34 @@
     var T_N_MORE = ' \u0641\u0642\u0637 \u0648\u0632\u062f \u062a\u0648\u0641\u064a\u0631\u0643';
     var T_N_BEST = '\u062a\u0645 \u062a\u0637\u0628\u064a\u0642 \u0623\u0641\u0636\u0644 \u0639\u0631\u0636';
 
+    function $(id) { return document.getElementById(id); }
     function dcode(c) { return CODE_PREFIX + c; }
 
-    document.getElementById('brand').textContent = BRAND;
-    document.getElementById('foot').textContent = BRAND + ' \u00A9 ' + new Date().getFullYear();
-    document.getElementById('ctitle').textContent = T_CART;
-    document.getElementById('ctotlbl').textContent = T_TOTAL;
-    document.getElementById('csend').textContent = T_SEND;
-    document.getElementById('cclear').textContent = T_CLEAR;
-    document.getElementById('mshare').textContent = T_SHARE;
-    document.getElementById('mdescLbl').textContent = T_ABOUT;
-    document.getElementById('blabel').textContent = T_PICKS;
+    $('brand').textContent = BRAND;
+    $('foot').textContent = BRAND + ' \u00A9 ' + new Date().getFullYear();
+    $('ctitle').textContent = T_CART;
+    $('ctotlbl').textContent = T_TOTAL;
+    $('csend').textContent = T_SEND;
+    $('cclear').textContent = T_CLEAR;
+    $('mshare').textContent = T_SHARE;
+    $('mdescLbl').textContent = T_ABOUT;
+    $('blabel').textContent = T_PICKS;
+    $('pinput').placeholder = T_PROMO_PH;
+    $('papply').textContent = T_PROMO_BTN;
 
     // Offer pills in the hero
     (function () {
-      var box = document.getElementById('offers');
-      function pill(txt, cls) { var s = document.createElement('span'); s.className = 'opill' + (cls ? ' ' + cls : ''); s.textContent = txt; box.appendChild(s); }
-      pill('\u0634\u062d\u0646 \u0645\u062c\u0627\u0646\u064a \u0639\u0644\u0649 \u0642\u0637\u0639\u062a\u064a\u0646 \u0641\u0623\u0643\u062b\u0631', 'free');
-      pill('\u0642\u0637\u0639\u062a\u064a\u0646 \u0628\u0640 ' + BUNDLE2 + ' ' + CURRENCY);
-      pill('3 \u0642\u0637\u0639 \u0628\u0640 ' + BUNDLE3 + ' ' + CURRENCY);
+      var box = $('offers');
+      [T_FREESHIP, T_INSPECT].forEach(function (t) {
+        var s = document.createElement('span');
+        s.className = 'opill free';
+        s.textContent = t;
+        box.appendChild(s);
+      });
     })();
 
     // Floating WhatsApp button: opens the chat with a welcome message only
-    var fab = document.getElementById('fab');
+    var fab = $('fab');
     if (WHATSAPP) {
       var welcome = '\u0645\u0631\u062d\u0628\u0627\u064b ' + BRAND + '\u060c \u062d\u0627\u0628\u0628 \u0623\u0633\u062a\u0641\u0633\u0631 \u0639\u0646 \u0627\u0644\u0645\u0646\u062a\u062c\u0627\u062a';
       fab.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(welcome);
@@ -525,8 +568,15 @@
       return isNaN(n) ? 0 : n;
     }
     function fmt(n) { return String(Math.round(n * 100) / 100); }
+    function shuffle(a) {
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = a[i]; a[i] = a[j]; a[j] = t;
+      }
+      return a;
+    }
 
-    // Split a description into bullet points by comma or period (decimals like 6.5 stay intact)
+    // Split text into lines by comma or period (decimals like 6.5 stay intact)
     function splitDesc(s) {
       s = String(s || '');
       s = s.replace(/(\d)\.(\d)/g, '$1\u0001$2').replace(/(\d),(\d)/g, '$1\u0002$2');
@@ -578,6 +628,20 @@
       return a;
     }
 
+    // Card images: color photos + gallery photos, in a random order (kept stable per visit)
+    function cardImgs(p) {
+      if (p._imgs) return p._imgs;
+      var out = [], seen = {};
+      imgColors(p).forEach(function (c) {
+        if (!seen[c.imageId]) { seen[c.imageId] = true; out.push({ id: c.imageId, alt: p.name + ' ' + c.name }); }
+      });
+      (p.gallery || []).forEach(function (id) {
+        if (!seen[id]) { seen[id] = true; out.push({ id: id, alt: p.name }); }
+      });
+      p._imgs = shuffle(out);
+      return p._imgs;
+    }
+
     function allSizes(p) {
       var order = [], map = {};
       p.colors.forEach(function (c) {
@@ -605,9 +669,9 @@
     }
 
     function showSkeleton() {
-      var grid = document.getElementById('grid');
+      var grid = $('grid');
       grid.innerHTML = '';
-      document.getElementById('msg').textContent = '';
+      $('msg').textContent = '';
       for (var i = 0; i < 8; i++) grid.appendChild(el('div', 'skel'));
     }
 
@@ -629,7 +693,7 @@
 
     function render() {
       var list = getList();
-      var grid = document.getElementById('grid');
+      var grid = $('grid');
       grid.innerHTML = '';
       rotators = [];
 
@@ -638,17 +702,7 @@
         card.style.animationDelay = Math.min(idx * 0.04, 0.6) + 's';
 
         var wrap = el('div', 'imgwrap');
-        var cols = imgColors(p);
-
-        // Card images: color photos + extra gallery photos (gallery photos are NOT shown inside the product window)
-        var list2 = [], seen = {};
-        cols.forEach(function (c) {
-          if (!seen[c.imageId]) { seen[c.imageId] = true; list2.push({ id: c.imageId, alt: p.name + ' ' + c.name }); }
-        });
-        (p.gallery || []).forEach(function (id) {
-          if (!seen[id]) { seen[id] = true; list2.push({ id: id, alt: p.name }); }
-        });
-
+        var list2 = cardImgs(p);
         if (list2.length) {
           var imgs = list2.map(function (x) {
             var im = makeImg(x.id, 600, x.alt);
@@ -667,7 +721,8 @@
             });
             setTimeout(function () { imgs[1].load(); }, 800);
           }
-          if (cols.length > 1) wrap.appendChild(el('div', 'ccount', cols.length + ' \u0623\u0644\u0648\u0627\u0646'));
+          var nc = imgColors(p).length;
+          if (nc > 1) wrap.appendChild(el('div', 'ccount', nc + ' \u0623\u0644\u0648\u0627\u0646'));
         } else {
           wrap.appendChild(el('div', 'noimg', '\u0644\u0627 \u062a\u0648\u062c\u062f \u0635\u0648\u0631\u0629'));
         }
@@ -678,9 +733,10 @@
 
         var info = el('div', 'info');
         info.appendChild(el('div', 'name', p.name));
-        if (SPEC_LINES && SPEC_LINES.length) {
+        var specList = p.spec ? splitDesc(p.spec) : SPEC_LINES;
+        if (specList && specList.length) {
           var spec = el('div', 'spec');
-          SPEC_LINES.forEach(function (t) { spec.appendChild(el('div', 'sline', t)); });
+          specList.forEach(function (t) { spec.appendChild(el('div', 'sline', t)); });
           info.appendChild(spec);
         }
         var sizes = el('div', 'sizes');
@@ -705,31 +761,28 @@
         grid.appendChild(card);
       });
 
-      document.getElementById('msg').textContent = list.length ? '' : '\u0644\u0627 \u062a\u0648\u062c\u062f \u0645\u0646\u062a\u062c\u0627\u062a \u0645\u0637\u0627\u0628\u0642\u0629';
-      document.getElementById('count').textContent = list.length ? list.length + ' \u062f\u064a\u0632\u0627\u064a\u0646' : '';
+      $('msg').textContent = list.length ? '' : '\u0644\u0627 \u062a\u0648\u062c\u062f \u0645\u0646\u062a\u062c\u0627\u062a \u0645\u0637\u0627\u0628\u0642\u0629';
+      $('count').textContent = list.length ? list.length + ' \u062f\u064a\u0632\u0627\u064a\u0646' : '';
     }
 
     // One global timer for all cards
     setInterval(function () {
-      if (document.getElementById('modal').classList.contains('open')) return;
+      if ($('modal').classList.contains('open')) return;
       rotators.forEach(function (fn) { fn(); });
     }, ROTATE_MS);
 
-    /* ---------- Wide banner slider ---------- */
-    var bnItems = [], bnIndex = 0, bnVis = 3, bnStep = 0, bnTimer = null, bnTouchX = null;
-
-    function bnMax() { return Math.max(0, bnItems.length - bnVis); }
+    /* ---------- Wide banner (swipe + dots) ---------- */
+    var bnItems = [], bnVis = 3, bnStep = 0, bnPages = 1, bnTimer = null, bnRaf = 0, bnPause = 0;
 
     function buildBanner() {
-      var sec = document.getElementById('banner');
-      var track = document.getElementById('btrack');
+      var sec = $('banner'), track = $('btrack');
       track.innerHTML = '';
       bnItems = [];
       ALL.forEach(function (p) {
         if (!p.inStock || !p.gallery) return;
         p.gallery.forEach(function (id) { bnItems.push({ id: id, p: p }); });
       });
-      if (!bnItems.length) { sec.style.display = 'none'; bnStop(); return; }
+      if (!bnItems.length) { sec.style.display = 'none'; if (bnTimer) { clearInterval(bnTimer); bnTimer = null; } return; }
       sec.style.display = 'block';
       bnItems.forEach(function (it) {
         var s = el('div', 'bslide');
@@ -745,65 +798,80 @@
         it.img = im;
         it.el = s;
       });
-      bnIndex = 0;
       bnLayout();
-      bnStart();
+      if (bnTimer) clearInterval(bnTimer);
+      bnTimer = setInterval(function () {
+        if (document.hidden || Date.now() < bnPause || bnPages < 2) return;
+        var c = bnCur();
+        bnGo(c >= bnPages - 1 ? 0 : c + 1);
+      }, BANNER_MS);
     }
 
     function bnLayout() {
       if (!bnItems.length) return;
-      var w = document.getElementById('bview').clientWidth;
+      var v = $('bview'), w = v.clientWidth;
       if (!w) return;
       bnVis = w >= 1000 ? 4 : (w >= 640 ? 3 : 2);
-      var gap = 12;
-      var sw = (w - gap * (bnVis - 1)) / bnVis;
+      var gap = 12, sw = (w - gap * (bnVis - 1)) / bnVis;
       bnItems.forEach(function (it) { it.el.style.width = sw + 'px'; });
       bnStep = sw + gap;
-      if (bnIndex > bnMax()) bnIndex = bnMax();
-      var nav = bnItems.length > bnVis;
-      document.getElementById('bprev').style.display = nav ? 'flex' : 'none';
-      document.getElementById('bnext').style.display = nav ? 'flex' : 'none';
-      bnMove();
-    }
-
-    function bnMove() {
-      document.getElementById('btrack').style.transform = 'translateX(' + (bnIndex * bnStep) + 'px)';
-      var end = Math.min(bnItems.length, bnIndex + bnVis + 2);
-      for (var i = bnIndex; i < end; i++) bnItems[i].img.load();
-    }
-    function bnNext() { var m = bnMax(); bnIndex = bnIndex >= m ? 0 : bnIndex + 1; bnMove(); }
-    function bnPrev() { var m = bnMax(); bnIndex = bnIndex <= 0 ? m : bnIndex - 1; bnMove(); }
-    function bnStop() { if (bnTimer) { clearInterval(bnTimer); bnTimer = null; } }
-    function bnStart() {
-      bnStop();
-      if (bnItems.length > bnVis) {
-        bnTimer = setInterval(function () { if (!document.hidden) bnNext(); }, BANNER_MS);
+      bnPages = Math.ceil(bnItems.length / bnVis);
+      var dots = $('bdots');
+      dots.innerHTML = '';
+      if (bnPages > 1) {
+        for (var i = 0; i < bnPages; i++) {
+          (function (k) {
+            var d = el('button', 'bdot'); d.type = 'button';
+            d.addEventListener('click', function () { bnPause = Date.now() + BANNER_MS; bnGo(k); });
+            dots.appendChild(d);
+          })(i);
+        }
       }
+      bnSync();
     }
 
-    document.getElementById('bnext').addEventListener('click', function () { bnNext(); bnStart(); });
-    document.getElementById('bprev').addEventListener('click', function () { bnPrev(); bnStart(); });
+    function bnCur() {
+      var v = $('bview');
+      var max = v.scrollWidth - v.clientWidth;
+      if (max > 0 && v.scrollLeft >= max - 4) return bnPages - 1;
+      return Math.max(0, Math.min(bnPages - 1, Math.round(v.scrollLeft / (bnVis * bnStep))));
+    }
+    function bnGo(i) {
+      var v = $('bview');
+      var left = Math.min(i * bnVis * bnStep, v.scrollWidth - v.clientWidth);
+      try { v.scrollTo({ left: left, behavior: 'smooth' }); } catch (e) { v.scrollLeft = left; }
+    }
+    function bnSync() {
+      var v = $('bview');
+      var c = bnCur();
+      var ds = $('bdots').children;
+      for (var i = 0; i < ds.length; i++) ds[i].className = 'bdot' + (i === c ? ' on' : '');
+      var first = Math.max(0, Math.floor(v.scrollLeft / (bnStep || 1)));
+      var end = Math.min(bnItems.length, first + bnVis * 2 + 1);
+      for (var k = first; k < end; k++) bnItems[k].img.load();
+    }
     (function () {
-      var v = document.getElementById('bview');
-      v.addEventListener('mouseenter', bnStop);
-      v.addEventListener('mouseleave', bnStart);
-      v.addEventListener('touchstart', function (e) { bnTouchX = e.touches[0].clientX; bnStop(); }, { passive: true });
-      v.addEventListener('touchend', function (e) {
-        if (bnTouchX === null) return;
-        var dx = e.changedTouches[0].clientX - bnTouchX;
-        bnTouchX = null;
-        if (Math.abs(dx) > 40) { if (dx < 0) bnNext(); else bnPrev(); }
-        bnStart();
-      });
+      var v = $('bview');
+      v.addEventListener('scroll', function () {
+        if (bnRaf) return;
+        bnRaf = requestAnimationFrame(function () { bnRaf = 0; bnSync(); });
+      }, { passive: true });
+      v.addEventListener('touchstart', function () { bnPause = Date.now() + BANNER_MS * 2; }, { passive: true });
+      v.addEventListener('wheel', function () { bnPause = Date.now() + BANNER_MS * 2; }, { passive: true });
+      v.addEventListener('mouseenter', function () { bnPause = Date.now() + 86400000; });
+      v.addEventListener('mouseleave', function () { bnPause = Date.now() + BANNER_MS; });
     })();
     window.addEventListener('resize', bnLayout);
 
-    /* ---------- Direct links ---------- */
+    /* ---------- Direct links + back button ---------- */
     function setHash(code) {
-      try { history.replaceState(null, '', location.pathname + location.search + '#p-' + encodeURIComponent(code)); } catch (e) {}
+      try { history.replaceState(history.state, '', location.pathname + location.search + '#p-' + encodeURIComponent(code)); } catch (e) {}
     }
     function clearHash() {
-      try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+      try { history.replaceState(history.state, '', location.pathname + location.search); } catch (e) {}
+    }
+    function pushLayer(kind, hash) {
+      try { history.pushState({ hz: kind }, '', location.pathname + location.search + (hash || '')); } catch (e) {}
     }
     function openFromHash() {
       var m = /^#p-(.+)$/.exec(location.hash || '');
@@ -811,10 +879,14 @@
       var code;
       try { code = decodeURIComponent(m[1]); } catch (e) { return; }
       for (var i = 0; i < ALL.length; i++) {
-        if (ALL[i].code === code) { openModal(ALL[i]); return; }
+        if (ALL[i].code === code) { clearHash(); openModal(ALL[i]); return; }
       }
     }
-    window.addEventListener('hashchange', function () { if (ALL.length) openFromHash(); });
+    // Mobile back button closes the open window instead of leaving the site
+    window.addEventListener('popstate', function () {
+      if ($('cart').classList.contains('open')) closeCart(true);
+      else if ($('modal').classList.contains('open')) closeModal(true);
+    });
 
     function shareProduct() {
       if (!curProduct) return;
@@ -830,7 +902,7 @@
         fallback();
       }
     }
-    document.getElementById('mshare').addEventListener('click', shareProduct);
+    $('mshare').addEventListener('click', shareProduct);
 
     /* ---------- Product modal ---------- */
     function stopModalTimer() { if (modalTimer) { clearInterval(modalTimer); modalTimer = null; } }
@@ -843,7 +915,7 @@
 
     // Product window shows color photos only (gallery photos are not included)
     function buildModalPics(p) {
-      var pic = document.getElementById('mpic');
+      var pic = $('mpic');
       pic.innerHTML = '';
       modalImgs = [];
       stopModalTimer();
@@ -866,7 +938,6 @@
       for (var i = 0; i < c.sizes.length; i++) {
         if (c.sizes[i].inStock) { curSize = c.sizes[i]; break; }
       }
-      // freeze image on the chosen color
       stopModalTimer();
       for (var k = 0; k < modalImgs.length; k++) {
         if (modalImgs[k].color === c) { showModalImg(k); break; }
@@ -877,7 +948,7 @@
     }
 
     function renderColors() {
-      var box = document.getElementById('mcolors');
+      var box = $('mcolors');
       box.innerHTML = '';
       curProduct.colors.forEach(function (c) {
         var b = el('button', 'opt' + (c.inStock ? '' : ' out') + (c === curColor ? ' sel' : ''), c.name || '-');
@@ -885,11 +956,11 @@
         if (c.inStock) b.addEventListener('click', function () { selectColor(c); });
         box.appendChild(b);
       });
-      document.getElementById('colorName').textContent = curColor ? curColor.name : '\u0627\u062e\u062a\u0631 \u0627\u0644\u0644\u0648\u0646';
+      $('colorName').textContent = curColor ? curColor.name : '\u0627\u062e\u062a\u0631 \u0627\u0644\u0644\u0648\u0646';
     }
 
     function renderSizes() {
-      var box = document.getElementById('msizes');
+      var box = $('msizes');
       box.innerHTML = '';
       if (!curColor) {
         box.appendChild(el('div', 'hint', '\u0627\u062e\u062a\u0631 \u0627\u0644\u0644\u0648\u0646 \u0623\u0648\u0644\u0627\u064b \u0644\u0639\u0631\u0636 \u0627\u0644\u0645\u0642\u0627\u0633\u0627\u062a \u0627\u0644\u0645\u062a\u0627\u062d\u0629'));
@@ -905,9 +976,9 @@
 
     function updateInfo() {
       var p = curProduct;
-      var st = document.getElementById('mstatus');
-      var add = document.getElementById('madd');
-      var pr = document.getElementById('mprice');
+      var st = $('mstatus');
+      var add = $('madd');
+      var pr = $('mprice');
 
       if (curSize) {
         pr.textContent = curSize.price + ' ' + CURRENCY;
@@ -935,35 +1006,32 @@
 
     function setQty(n) {
       modalQty = Math.max(1, Math.min(99, n));
-      document.getElementById('mqty').textContent = modalQty;
+      $('mqty').textContent = modalQty;
     }
-    document.getElementById('mqplus').addEventListener('click', function () { setQty(modalQty + 1); });
-    document.getElementById('mqminus').addEventListener('click', function () { setQty(modalQty - 1); });
+    $('mqplus').addEventListener('click', function () { setQty(modalQty + 1); });
+    $('mqminus').addEventListener('click', function () { setQty(modalQty - 1); });
 
     function openModal(p) {
       curProduct = p;
       curColor = null;
       curSize = null;
       setQty(1);
-      document.getElementById('mcode').textContent = dcode(p.code);
-      document.getElementById('mname').textContent = p.name;
+      $('mcode').textContent = dcode(p.code);
+      $('mname').textContent = p.name;
 
-      // description bullets
       var list = splitDesc(p.desc);
-      var ul = document.getElementById('mdesc');
+      var ul = $('mdesc');
       ul.innerHTML = '';
       list.forEach(function (t) { ul.appendChild(el('li', '', t)); });
-      document.getElementById('mdescBlock').style.display = list.length ? 'block' : 'none';
+      $('mdescBlock').style.display = list.length ? 'block' : 'none';
 
-      // offer note under the price
-      document.getElementById('moffer').textContent = T_SHIP + ' ' + SHIP_FEE + ' ' + CURRENCY + ' \u00b7 \u0648\u0645\u062c\u0627\u0646\u064a \u0639\u0646\u062f \u0634\u0631\u0627\u0621 \u0642\u0637\u0639\u062a\u064a\u0646 \u0641\u0623\u0643\u062b\u0631';
+      $('moffer').textContent = T_SHIP + ' ' + SHIP_FEE + ' ' + CURRENCY + ' \u00b7 \u0648\u0645\u062c\u0627\u0646\u064a \u0639\u0646\u062f \u0634\u0631\u0627\u0621 \u0642\u0637\u0639\u062a\u064a\u0646 \u0641\u0623\u0643\u062b\u0631';
 
       buildModalPics(p);
 
       var hasColors = p.colors.some(function (c) { return c.name; });
-      document.getElementById('colorBlock').style.display = hasColors ? 'block' : 'none';
+      $('colorBlock').style.display = hasColors ? 'block' : 'none';
 
-      // auto-select when there is a single in-stock color (or no colors at all)
       var avail = p.colors.filter(function (c) { return c.inStock; });
       if (!hasColors || avail.length === 1) {
         if (avail.length) { selectColor(avail[0]); }
@@ -973,18 +1041,83 @@
         renderSizes();
         updateInfo();
       }
-      document.getElementById('modal').classList.add('open');
-      setHash(p.code);
+      $('modal').classList.add('open');
+      if (!modalPushed) { pushLayer('m', '#p-' + encodeURIComponent(p.code)); modalPushed = true; }
+      else setHash(p.code);
       track('ViewContent', { content_ids: [p.code], content_name: p.name, content_type: 'product', currency: 'EGP' });
     }
 
-    function closeModal() {
+    function closeModal(fromPop) {
       stopModalTimer();
-      document.getElementById('modal').classList.remove('open');
-      clearHash();
+      var wasOpen = $('modal').classList.contains('open');
+      $('modal').classList.remove('open');
+      if (modalPushed) {
+        modalPushed = false;
+        if (fromPop !== true) { try { history.back(); } catch (e) {} }
+      } else if (wasOpen) {
+        clearHash();
+      }
     }
-    document.getElementById('close').addEventListener('click', closeModal);
-    document.getElementById('modal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+    $('close').addEventListener('click', closeModal);
+    $('modal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+
+    /* ---------- Promo codes ---------- */
+    function findPromo(code) {
+      code = String(code || '').trim().toLowerCase();
+      if (!code) return null;
+      for (var i = 0; i < PROMOS.length; i++) {
+        if (String(PROMOS[i].code).trim().toLowerCase() === code) return PROMOS[i];
+      }
+      return null;
+    }
+    function savePromo() {
+      try {
+        if (promoApplied) localStorage.setItem('hz_promo', promoApplied.code);
+        else localStorage.removeItem('hz_promo');
+      } catch (e) {}
+    }
+    function restorePromo() {
+      var c = '';
+      try { c = localStorage.getItem('hz_promo') || ''; } catch (e) {}
+      var p = c ? findPromo(c) : null;
+      promoApplied = p ? { code: p.code, discount: Number(p.discount) } : null;
+    }
+    function applyPromo() {
+      var p = findPromo($('pinput').value);
+      if (!p || !(Number(p.discount) > 0)) {
+        var m = $('pmsg');
+        m.className = 'pmsg bad';
+        m.textContent = T_P_BAD;
+        return;
+      }
+      promoApplied = { code: p.code, discount: Number(p.discount) };
+      savePromo();
+      $('pinput').value = '';
+      renderCart();
+    }
+    function removePromo() {
+      promoApplied = null;
+      savePromo();
+      renderCart();
+    }
+    function renderPromoUI() {
+      var row = $('prow'), m = $('pmsg');
+      if (promoApplied) {
+        row.style.display = 'none';
+        m.className = 'pmsg ok';
+        m.innerHTML = '';
+        m.appendChild(el('span', '', T_P_OK + ': ' + promoApplied.code));
+        var x = el('button', '', '\u00d7'); x.type = 'button';
+        x.addEventListener('click', removePromo);
+        m.appendChild(x);
+      } else {
+        row.style.display = 'flex';
+        if (m.className.indexOf('bad') < 0) { m.className = 'pmsg'; m.textContent = ''; }
+      }
+    }
+    $('papply').addEventListener('click', applyPromo);
+    $('pinput').addEventListener('keydown', function (e) { if (e.key === 'Enter') applyPromo(); });
+    $('pinput').addEventListener('input', function () { var m = $('pmsg'); if (m.className.indexOf('bad') > -1) { m.className = 'pmsg'; m.textContent = ''; } });
 
     /* ---------- Cart ---------- */
     function loadCart() {
@@ -1001,7 +1134,7 @@
       return cart.reduce(function (a, i) { return a + i.qty; }, 0);
     }
 
-    // Pricing: bundles of 3 (BUNDLE3), then a pair (BUNDLE2), shipping free from 2 pieces
+    // Pricing: bundles of 3 (BUNDLE3), then a pair (BUNDLE2), shipping free from 2 pieces, then promo code
     function calcPricing() {
       var units = [];
       cart.forEach(function (it) {
@@ -1016,25 +1149,27 @@
         i += 3;
       }
       if (n - i === 2) discount += Math.max(0, units[i] + units[i + 1] - BUNDLE2);
+      var base = sub - discount;
+      var promo = promoApplied ? Math.min(promoApplied.discount, base) : 0;
       var ship = n === 1 ? SHIP_FEE : 0;
-      return { n: n, sub: sub, discount: discount, ship: ship, total: sub - discount + ship, last: n ? units[n - 1] : 0 };
+      return { n: n, sub: sub, discount: discount, promo: promo, ship: ship, total: Math.max(0, base - promo + ship), last: n ? units[n - 1] : 0 };
     }
 
     function updateBadge() {
-      var b = document.getElementById('cbadge');
+      var b = $('cbadge');
       var n = cartCount();
       b.textContent = n;
       b.style.display = n ? 'flex' : 'none';
     }
     function showToast(text) {
-      var t = document.getElementById('toast');
+      var t = $('toast');
       t.textContent = text;
       t.classList.add('show');
       clearTimeout(toastTimer);
       toastTimer = setTimeout(function () { t.classList.remove('show'); }, 1800);
     }
     function bumpCart() {
-      var f = document.getElementById('cartfab');
+      var f = $('cartfab');
       f.classList.remove('bump');
       void f.offsetWidth;
       f.classList.add('bump');
@@ -1067,7 +1202,7 @@
       closeModal();
       showToast(T_ADDED);
     }
-    document.getElementById('madd').addEventListener('click', addToCart);
+    $('madd').addEventListener('click', addToCart);
 
     function changeQty(item, d) {
       item.qty += d;
@@ -1085,15 +1220,15 @@
       var pr = calcPricing();
       var lines = [T_GREET];
       cart.forEach(function (it, i) {
-        var line = (i + 1) + ') ' + it.name +
+        lines.push((i + 1) + ') ' + it.name +
           (it.color ? ' - ' + T_COLOR + ' ' + it.color : '') +
           (it.size ? ' - ' + T_SIZE + ' ' + it.size : '') +
-          ' (' + T_CODE + ' ' + dcode(it.code) + ') \u00d7 ' + it.qty;
-        lines.push(line);
+          ' (' + T_CODE + ' ' + dcode(it.code) + ') \u00d7 ' + it.qty);
       });
       lines.push('');
       lines.push(T_SUB + ': ' + fmt(pr.sub) + ' ' + CURRENCY);
       if (pr.discount > 0) lines.push(T_DISC + ': -' + fmt(pr.discount) + ' ' + CURRENCY);
+      if (pr.promo > 0 && promoApplied) lines.push(T_PROMO_LINE + ' (' + promoApplied.code + '): -' + fmt(pr.promo) + ' ' + CURRENCY);
       lines.push(T_SHIP + ': ' + (pr.ship === 0 ? T_FREE : fmt(pr.ship) + ' ' + CURRENCY));
       lines.push(T_TOTAL + ': ' + fmt(pr.total) + ' ' + CURRENCY);
       return lines.join('\n');
@@ -1107,9 +1242,9 @@
     }
 
     function renderCart() {
-      var list = document.getElementById('clist');
-      var foot = document.getElementById('cfoot');
-      var nudge = document.getElementById('cnudge');
+      var list = $('clist');
+      var foot = $('cfoot');
+      var nudge = $('cnudge');
       list.innerHTML = '';
       if (!cart.length) {
         list.appendChild(el('div', 'cempty', T_EMPTY));
@@ -1165,8 +1300,7 @@
       // Nudge toward the next offer
       var r = pr.n % 3, msg = '';
       if (r === 1) {
-        var c2 = Math.max(0, BUNDLE2 - pr.last);
-        msg = T_N_ADD2 + fmt(c2) + ' ' + CURRENCY + (pr.n === 1 ? T_N_FREE : T_N_ONLY);
+        msg = T_N_ADD2 + fmt(Math.max(0, BUNDLE2 - pr.last)) + ' ' + CURRENCY + (pr.n === 1 ? T_N_FREE : T_N_ONLY);
       } else if (r === 2) {
         msg = T_N_ADD3 + fmt(Math.max(0, BUNDLE3 - BUNDLE2)) + ' ' + CURRENCY + T_N_MORE;
       } else {
@@ -1175,19 +1309,23 @@
       nudge.textContent = msg;
       nudge.style.display = 'block';
 
+      renderPromoUI();
+
       // Summary
-      var sum = document.getElementById('csum');
+      var sum = $('csum');
       sum.innerHTML = '';
       sum.appendChild(sumRow(T_SUB, fmt(pr.sub) + ' ' + CURRENCY, ''));
       if (pr.discount > 0) sum.appendChild(sumRow(T_DISC, '-' + fmt(pr.discount) + ' ' + CURRENCY, 'disc'));
+      if (pr.promo > 0 && promoApplied) sum.appendChild(sumRow(T_PROMO_ROW + ' (' + promoApplied.code + ')', '-' + fmt(pr.promo) + ' ' + CURRENCY, 'disc'));
       sum.appendChild(sumRow(T_SHIP, pr.ship === 0 ? T_FREE : fmt(pr.ship) + ' ' + CURRENCY, pr.ship === 0 ? 'free' : ''));
+      sum.appendChild(el('div', 'sins', T_INSPECT));
 
-      var tot = document.getElementById('ctot');
+      var tot = $('ctot');
       tot.innerHTML = '';
       tot.appendChild(document.createTextNode(fmt(pr.total)));
       tot.appendChild(el('small', '', CURRENCY));
 
-      var send = document.getElementById('csend');
+      var send = $('csend');
       if (WHATSAPP) {
         send.style.display = 'block';
         send.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(buildOrderMsg());
@@ -1198,21 +1336,27 @@
 
     function openCart() {
       renderCart();
-      document.getElementById('cart').classList.add('open');
+      $('cart').classList.add('open');
+      if (!cartPushed) { pushLayer('c', ''); cartPushed = true; }
     }
-    function closeCart() {
-      document.getElementById('cart').classList.remove('open');
+    function closeCart(fromPop) {
+      var wasOpen = $('cart').classList.contains('open');
+      $('cart').classList.remove('open');
+      if (cartPushed) {
+        cartPushed = false;
+        if (fromPop !== true && wasOpen) { try { history.back(); } catch (e) {} }
+      }
     }
-    document.getElementById('cartfab').addEventListener('click', openCart);
-    document.getElementById('cclose').addEventListener('click', closeCart);
-    document.getElementById('cart').addEventListener('click', function (e) { if (e.target === this) closeCart(); });
-    document.getElementById('cclear').addEventListener('click', function () {
+    $('cartfab').addEventListener('click', openCart);
+    $('cclose').addEventListener('click', closeCart);
+    $('cart').addEventListener('click', function (e) { if (e.target === this) closeCart(); });
+    $('cclear').addEventListener('click', function () {
       cart = [];
       saveCart();
       updateBadge();
       renderCart();
     });
-    document.getElementById('csend').addEventListener('click', function () {
+    $('csend').addEventListener('click', function () {
       var pr = calcPricing();
       track('InitiateCheckout', {
         content_ids: cart.map(function (i) { return i.code; }),
@@ -1228,8 +1372,8 @@
     updateBadge();
 
     /* ---------- Filters ---------- */
-    document.getElementById('search').addEventListener('input', function () { query = this.value.trim(); render(); });
-    document.getElementById('sort').addEventListener('change', function () { sortMode = this.value; render(); });
+    $('search').addEventListener('input', function () { query = this.value.trim(); render(); });
+    $('sort').addEventListener('change', function () { sortMode = this.value; render(); });
     Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (c) {
       c.addEventListener('click', function () {
         document.querySelector('.chip.active').classList.remove('active');
@@ -1241,8 +1385,8 @@
 
     /* ---------- Load data from Apps Script (JSONP, no CORS) ---------- */
     function showError() {
-      document.getElementById('grid').innerHTML = '';
-      var msg = document.getElementById('msg');
+      $('grid').innerHTML = '';
+      var msg = $('msg');
       msg.innerHTML = '';
       msg.appendChild(document.createTextNode('\u062d\u062f\u062b \u062e\u0637\u0623 \u0641\u064a \u0627\u0644\u062a\u062d\u0645\u064a\u0644'));
       msg.appendChild(document.createElement('br'));
@@ -1270,6 +1414,8 @@
         cleanup();
         if (!data || !data.ok) { showError(); return; }
         ALL = data.products || [];
+        PROMOS = data.promos || [];
+        restorePromo();
         render();
         buildBanner();
         if (!hashHandled) { hashHandled = true; openFromHash(); }
