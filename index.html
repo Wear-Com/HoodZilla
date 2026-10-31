@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1c1812">
   <title>HoodZilla</title>
+  <link rel="preconnect" href="https://script.google.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -50,66 +51,67 @@
       background:
         radial-gradient(640px 320px at 50% 0%, rgba(216,180,114,.22), rgba(216,180,114,0) 70%),
         linear-gradient(135deg, #14110d 0%, #221c13 60%, #2f2618 100%);
-      color: #fff; text-align: center; padding: 56px 20px 74px; position: relative; overflow: hidden;
+      color: #fff; text-align: center; padding: 40px 20px 58px; position: relative; overflow: hidden;
     }
     .hero::before, .hero::after { content: ''; position: absolute; border-radius: 50%; border: 1px solid rgba(216,180,114,.38); }
     .hero::before { width: 380px; height: 380px; top: -170px; right: -120px; }
     .hero::after { width: 260px; height: 260px; bottom: -130px; left: -80px; }
     .hero-edge { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
     .brand {
-      display: inline-block; font-size: clamp(26px, 7vw, 40px); letter-spacing: 9px; margin-bottom: 16px; font-weight: 900; line-height: 1.2;
+      display: inline-block; font-size: clamp(26px, 7vw, 40px); letter-spacing: 9px; margin-bottom: 12px; font-weight: 900; line-height: 1.2;
       background: linear-gradient(90deg, #c28f3a 0%, #efcd84 22%, #fffaf0 50%, #efcd84 78%, #c28f3a 100%);
       background-size: 200% 100%; background-repeat: repeat-x; -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent; color: transparent; animation: shine 3.6s linear infinite;
       filter: drop-shadow(0 2px 14px rgba(216,180,114,.4));
     }
     @keyframes shine { from { background-position: 0 0; } to { background-position: -200% 0; } }
-    .hero h1 { font-size: clamp(26px, 6vw, 52px); font-weight: 900; line-height: 1.3; margin-bottom: 12px; color: #fff; }
+    .hero h1 { font-size: clamp(26px, 6vw, 48px); font-weight: 900; line-height: 1.3; margin-bottom: 8px; color: #fff; }
     .hero h1 span {
       background: linear-gradient(110deg, var(--gold-3), var(--gold-2), var(--gold));
       -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
     }
-    .hero p { color: #d6cfc2; font-size: clamp(14px, 2.4vw, 18px); max-width: 560px; margin: 0 auto; line-height: 1.7; }
-    .offers { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px; }
-    .opill { font-size: 13px; font-weight: 700; color: var(--gold-2); border: 1px solid rgba(216,180,114,.4); background: rgba(216,180,114,.08); padding: 6px 14px; border-radius: 30px; }
+    .hero p { color: #d6cfc2; font-size: clamp(14px, 2.4vw, 17px); max-width: 560px; margin: 0 auto; line-height: 1.6; }
+    .offers { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+    .opill { font-size: 13px; font-weight: 700; color: var(--gold-2); border: 1px solid rgba(216,180,114,.4); background: rgba(216,180,114,.08); padding: 5px 14px; border-radius: 30px; }
     .opill.free { background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; border-color: var(--gold); }
-    .line { width: 90px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 24px auto 0; }
+    .line { width: 90px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 16px auto 0; }
 
     /* ===== Toolbar ===== */
-    .toolbar { max-width: 1200px; margin: -30px auto 0; padding: 0 16px; position: relative; z-index: 2; }
+    .toolbar { max-width: 1200px; margin: -26px auto 0; padding: 0 16px; position: relative; z-index: 2; }
     .toolbar-box {
-      background: linear-gradient(180deg, #2b251c, #221d15); border-radius: 14px; padding: 14px;
+      background: linear-gradient(180deg, #2b251c, #221d15); border-radius: 14px; padding: 9px 12px;
       border: 1px solid var(--line); box-shadow: 0 14px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(243,220,166,.10);
-      display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
     }
     #search {
-      flex: 1 1 240px; padding: 12px 16px; font-size: 16px; font-family: inherit; color: var(--ink);
+      flex: 1 1 240px; padding: 7px 14px; font-size: 16px; font-family: inherit; color: var(--ink);
       border: 1px solid rgba(216,180,114,.20); border-radius: 10px; background: var(--panel); outline: none; min-width: 0;
     }
     #search::placeholder { color: #8c8370; }
     #search:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(216,180,114,.14); }
     .chips { display: flex; gap: 8px; flex-wrap: wrap; }
     .chip {
-      border: 1px solid rgba(216,180,114,.28); background: transparent; padding: 9px 18px; border-radius: 30px;
-      font-family: inherit; font-size: 14px; cursor: pointer; transition: .2s; color: var(--ink); white-space: nowrap;
+      border: 1px solid rgba(216,180,114,.28); background: transparent; padding: 6px 16px; border-radius: 30px;
+      font-family: inherit; font-size: 13px; cursor: pointer; transition: .2s; color: var(--ink); white-space: nowrap;
     }
     .chip:hover { border-color: var(--gold); color: var(--gold-2); }
     .chip.active { background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; border-color: var(--gold); font-weight: 700; }
-    #sort { padding: 10px 12px; font-family: inherit; font-size: 16px; color: var(--ink); border: 1px solid rgba(216,180,114,.20); border-radius: 10px; background: var(--panel); cursor: pointer; }
+    #sort { padding: 6px 10px; font-family: inherit; font-size: 16px; color: var(--ink); border: 1px solid rgba(216,180,114,.20); border-radius: 10px; background: var(--panel); cursor: pointer; }
     #sort option { background: #231e17; color: var(--ink); }
 
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 22px 16px 90px; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 20px 16px 90px; }
     .count { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
     #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
 
-    /* ===== Quantity offers strip ===== */
-    .ostrip { display: flex; gap: 12px; margin-bottom: 22px; }
+    /* ===== Offers strip ===== */
+    .ostrip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 22px; }
     .ostrip:empty { display: none; }
-    .otile { flex: 1; position: relative; overflow: hidden; border-radius: 14px; padding: 14px 18px; border: 1px solid rgba(216,180,114,.45); background: linear-gradient(135deg, rgba(216,180,114,.16), rgba(216,180,114,.04)); display: flex; flex-direction: column; gap: 2px; }
+    .otile { position: relative; overflow: hidden; border-radius: 14px; padding: 12px 16px; border: 1px solid rgba(216,180,114,.45); background: linear-gradient(135deg, rgba(216,180,114,.16), rgba(216,180,114,.04)); display: flex; flex-direction: column; gap: 2px; }
     .otile::before { content: ''; position: absolute; left: -34px; top: -34px; width: 96px; height: 96px; border-radius: 50%; border: 1px solid rgba(216,180,114,.3); }
     .otile.best { border-color: var(--gold); background: linear-gradient(135deg, rgba(216,180,114,.30), rgba(216,180,114,.07)); box-shadow: 0 0 30px rgba(216,180,114,.15); }
+    .otile.promo { border-style: dashed; }
     .otitle { font-size: 13px; font-weight: 700; color: var(--muted); }
-    .ooff { font-size: 24px; font-weight: 900; line-height: 1.3; background: linear-gradient(110deg, var(--gold-3), var(--gold-2), var(--gold)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+    .ooff { font-size: 22px; font-weight: 900; line-height: 1.3; background: linear-gradient(110deg, var(--gold-3), var(--gold-2), var(--gold)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
     .osub { font-size: 12px; font-weight: 700; color: var(--green); }
 
     /* ===== Wide banner (swipe + dots) ===== */
@@ -170,7 +172,7 @@
 
     .skel { height: 360px; border-radius: 14px; border: 1px solid var(--line); background: linear-gradient(90deg,#231e17 25%,#322b20 50%,#231e17 75%); background-size: 200% 100%; animation: sh 1.2s infinite; }
     @keyframes sh { to { background-position: -200% 0; } }
-    #msg { text-align: center; color: var(--muted); padding: 40px 10px; font-size: 16px; }
+    #msg { text-align: center; color: var(--muted); padding: 24px 10px; font-size: 15px; }
     #msg:empty { display: none; }
     #msg button { margin-top: 12px; padding: 10px 24px; border: 0; border-radius: 30px; background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; font-weight: 700; font-family: inherit; font-size: 15px; cursor: pointer; }
 
@@ -194,6 +196,8 @@
     .mnote { width: 100%; font-size: 12px; color: var(--muted); }
     .lbl { font-size: 13px; color: var(--muted); font-weight: 600; }
     .lbl b { color: var(--gold-2); }
+    .clrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+    .chint { font-size: 11px; font-weight: 600; color: var(--muted); opacity: .85; }
     .opts { display: flex; flex-wrap: wrap; gap: 8px; }
     .opt { min-width: 46px; padding: 9px 14px; border: 1px solid rgba(216,180,114,.32); border-radius: 10px; background: transparent; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; color: var(--ink); transition: .15s; }
     .opt:hover { border-color: var(--gold); color: var(--gold-2); }
@@ -210,6 +214,10 @@
     .qty span { min-width: 20px; text-align: center; font-weight: 700; font-size: 14px; }
     .qty.big button { width: 36px; height: 36px; font-size: 22px; }
     .qty.big span { min-width: 34px; font-size: 17px; }
+    .qrow.dis .lbl { opacity: .45; }
+    .qrow.dis .qty { border-color: rgba(216,180,114,.12); }
+    .qrow.dis .qty button { opacity: .3; cursor: not-allowed; pointer-events: none; }
+    .qrow.dis .qty span { opacity: .35; text-decoration: line-through; }
     .btn { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 10px; font-family: inherit; font-size: 16px; font-weight: 700; text-decoration: none; border: 0; cursor: pointer; }
     .btn.add { background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; box-shadow: 0 8px 22px rgba(216,180,114,.25); }
     .btn.wa { background: linear-gradient(135deg, #2fe07a, #1ebe5d); color: #04210f; box-shadow: 0 8px 22px rgba(37,211,102,.25); }
@@ -268,7 +276,7 @@
     .cfoot { padding: 12px 18px 16px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; background: #1e1913; flex: none; }
     .promo { display: flex; flex-direction: column; gap: 6px; }
     .prow { display: flex; gap: 8px; }
-    #pinput { flex: 1; min-width: 0; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(216,180,114,.25); background: var(--panel); color: var(--ink); font-family: inherit; font-size: 15px; outline: none; direction: ltr; text-align: center; letter-spacing: 1px; }
+    #pinput { flex: 1; min-width: 0; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(216,180,114,.25); background: var(--panel); color: var(--ink); font-family: inherit; font-size: 16px; outline: none; direction: ltr; text-align: center; letter-spacing: 1px; }
     #pinput:focus { border-color: var(--gold); }
     #pinput::placeholder { color: #8c8370; letter-spacing: 0; }
     #papply { padding: 0 18px; border-radius: 10px; border: 1px solid var(--gold); background: transparent; color: var(--gold-2); font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
@@ -297,20 +305,21 @@
     }
 
     @media (max-width: 640px) {
-      .hero { padding: 40px 16px 60px; }
+      .hero { padding: 30px 16px 48px; }
       .brand { letter-spacing: 5px; }
-      .opill { font-size: 12px; padding: 5px 12px; }
+      .opill { font-size: 12px; padding: 4px 12px; }
       .toolbar { padding: 0 10px; }
-      .toolbar-box { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px; }
+      .toolbar-box { flex-direction: column; align-items: stretch; gap: 8px; padding: 9px 10px; }
       #search { flex: none; width: 100%; }
-      .chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+      .chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
       .chip { flex: 1 0 auto; }
       #sort { width: 100%; }
       .wrap { padding: 16px 10px 90px; }
-      .ostrip { gap: 8px; margin-bottom: 18px; }
-      .otile { padding: 11px 12px; }
+      .ostrip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 18px; }
+      .otile:last-child:nth-child(odd) { grid-column: 1 / -1; }
+      .otile { padding: 10px 12px; }
       .otitle { font-size: 12px; }
-      .ooff { font-size: 19px; }
+      .ooff { font-size: 18px; }
       .osub { font-size: 11px; }
       .banner { margin-bottom: 20px; }
       .bname { font-size: 12px; }
@@ -408,7 +417,10 @@
           <ul class="dlist" id="mdesc"></ul>
         </div>
         <div id="colorBlock">
-          <div class="lbl" style="margin-bottom:8px">&#x627;&#x644;&#x644;&#x648;&#x646;: <b id="colorName"></b></div>
+          <div class="clrow">
+            <span class="lbl">&#x627;&#x644;&#x644;&#x648;&#x646;: <b id="colorName"></b></span>
+            <span class="chint" id="chint"></span>
+          </div>
           <div class="opts" id="mcolors"></div>
         </div>
         <div>
@@ -418,7 +430,7 @@
         <div class="p" id="mprice"></div>
         <div class="moffer" id="moffer"></div>
         <div class="status" id="mstatus"></div>
-        <div class="qrow">
+        <div class="qrow" id="qrow">
           <span class="lbl">&#x627;&#x644;&#x643;&#x645;&#x64A;&#x629;</span>
           <div class="qty big">
             <button id="mqplus" type="button">+</button>
@@ -470,8 +482,9 @@
 
     var UNIT_PRICE = 650;               // single piece price (used only to show the discount amounts)
     var SHIP_FEE = 50;                  // shipping for a single piece (free from 2 pieces)
-    var BUNDLE2 = 1250;                 // price of 2 pieces
-    var BUNDLE3 = 1800;                 // price of 3 pieces
+    var BUNDLE2 = 1250;                 // price of 2 pieces (50 off)
+    var BUNDLE3 = 1750;                 // price of 3 pieces (200 off)
+    var BUNDLE4 = 2200;                 // price of 4 pieces (400 off)
     var SPEC_LINES = ['\u0642\u0637\u0646 100%', '600-650 \u062c\u0631\u0627\u0645'];   // used only if the Excel spec column (F) is empty
     var META_PIXEL_ID = '';             // put your Meta Pixel ID here (leave empty to disable)
     // ================================
@@ -525,18 +538,29 @@
     var T_PROMO_LINE = '\u0643\u0648\u062f \u0627\u0644\u062e\u0635\u0645';
     var T_N_ADD2 = '\u0623\u0636\u0641 \u0642\u0637\u0639\u0629 \u062b\u0627\u0646\u064a\u0629 \u0628\u0640 ';
     var T_N_ADD3 = '\u0623\u0636\u0641 \u0642\u0637\u0639\u0629 \u062b\u0627\u0644\u062b\u0629 \u0628\u0640 ';
+    var T_N_ADD4 = '\u0623\u0636\u0641 \u0642\u0637\u0639\u0629 \u0631\u0627\u0628\u0639\u0629 \u0628\u0640 ';
     var T_N_ONLY = ' \u0641\u0642\u0637';
     var T_N_FREE = ' \u0641\u0642\u0637 \u0648\u0627\u062d\u0635\u0644 \u0639\u0644\u0649 \u0634\u062d\u0646 \u0645\u062c\u0627\u0646\u064a';
     var T_N_MORE = ' \u0641\u0642\u0637 \u0648\u0632\u062f \u062a\u0648\u0641\u064a\u0631\u0643';
     var T_N_BEST = '\u062a\u0645 \u062a\u0637\u0628\u064a\u0642 \u0623\u0641\u0636\u0644 \u0639\u0631\u0636';
     var T_BUY2 = '\u0627\u0634\u062a\u0631\u064a \u0642\u0637\u0639\u062a\u064a\u0646';
     var T_BUY3 = '\u0627\u0634\u062a\u0631\u064a 3 \u0642\u0637\u0639';
+    var T_BUY4 = '\u0627\u0634\u062a\u0631\u064a 4 \u0642\u0637\u0639';
     var T_OFF = '\u062e\u0635\u0645';
     var T_WITH_FREE = '\u0645\u0639 \u0634\u062d\u0646 \u0645\u062c\u0627\u0646\u064a';
     var T_2PCS = '\u0642\u0637\u0639\u062a\u064a\u0646';
     var T_3PCS = '3 \u0642\u0637\u0639';
+    var T_4PCS = '4 \u0642\u0637\u0639';
     var T_FREESHIP_S = '\u0634\u062d\u0646 \u0645\u062c\u0627\u0646\u064a';
     var T_ONEPC = ' \u0644\u0642\u0637\u0639\u0629 \u0648\u0627\u062d\u062f\u0629';
+    var T_PR_T = '\u0639\u0646\u062f\u0643 \u0643\u0648\u062f \u062e\u0635\u0645\u061f';
+    var T_PR_B = '\u062e\u0635\u0645 \u0625\u0636\u0627\u0641\u064a';
+    var T_PR_S = '\u0627\u0643\u062a\u0628\u0647 \u0641\u064a \u0627\u0644\u0633\u0644\u0629';
+    var T_CHINT1 = '\u0627\u062e\u062a\u0631 \u0627\u0644\u0644\u0648\u0646 \u0644\u062a\u0638\u0647\u0631 \u0635\u0648\u0631\u062a\u0647';
+    var T_CHINT2 = '\u0627\u0636\u063a\u0637 \u0639\u0644\u064a\u0647 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649 \u0644\u0625\u0644\u063a\u0627\u0626\u0647';
+    var T_SLOW = '\u062c\u0627\u0631\u064a \u0627\u0644\u062a\u062d\u0645\u064a\u0644... \u0642\u062f \u064a\u0633\u062a\u063a\u0631\u0642 \u0648\u0642\u062a\u0627\u064b \u0645\u0639 \u0627\u0644\u0625\u0646\u062a\u0631\u0646\u062a \u0627\u0644\u0628\u0637\u064a\u0621';
+    var T_ERR = '\u062d\u062f\u062b \u062e\u0637\u0623 \u0641\u064a \u0627\u0644\u062a\u062d\u0645\u064a\u0644';
+    var T_RETRY = '\u0625\u0639\u0627\u062f\u0629 \u0627\u0644\u0645\u062d\u0627\u0648\u0644\u0629';
 
     function $(id) { return document.getElementById(id); }
     function dcode(c) { return CODE_PREFIX + c; }
@@ -566,22 +590,26 @@
       });
     })();
 
-    // Quantity offers strip (under the search bar)
-    (function () {
+    // Offers strip (quantity offers + promo code tile)
+    function buildStrip() {
       var box = $('ostrip');
-      function tile(title, off, cls) {
+      box.innerHTML = '';
+      function tile(title, big, sub, cls) {
         var t = document.createElement('div');
         t.className = 'otile' + (cls ? ' ' + cls : '');
         var a = document.createElement('div'); a.className = 'otitle'; a.textContent = title;
-        var b = document.createElement('div'); b.className = 'ooff'; b.textContent = T_OFF + ' ' + off + ' ' + CURRENCY;
-        var c = document.createElement('div'); c.className = 'osub'; c.textContent = T_WITH_FREE;
+        var b = document.createElement('div'); b.className = 'ooff'; b.textContent = big;
+        var c = document.createElement('div'); c.className = 'osub'; c.textContent = sub;
         t.appendChild(a); t.appendChild(b); t.appendChild(c);
         box.appendChild(t);
       }
-      var d2 = offAmount(2, BUNDLE2), d3 = offAmount(3, BUNDLE3);
-      if (d2 > 0) tile(T_BUY2, d2, '');
-      if (d3 > 0) tile(T_BUY3, d3, 'best');
-    })();
+      var d2 = offAmount(2, BUNDLE2), d3 = offAmount(3, BUNDLE3), d4 = offAmount(4, BUNDLE4);
+      if (d2 > 0) tile(T_BUY2, T_OFF + ' ' + d2 + ' ' + CURRENCY, T_WITH_FREE, '');
+      if (d3 > 0) tile(T_BUY3, T_OFF + ' ' + d3 + ' ' + CURRENCY, T_WITH_FREE, '');
+      if (d4 > 0) tile(T_BUY4, T_OFF + ' ' + d4 + ' ' + CURRENCY, T_WITH_FREE, 'best');
+      if (PROMOS.length) tile(T_PR_T, T_PR_B, T_PR_S, 'promo');
+    }
+    buildStrip();
 
     // Floating WhatsApp button: opens the chat with a welcome message only
     var fab = $('fab');
@@ -975,6 +1003,12 @@
 
     /* ---------- Product modal ---------- */
     function stopModalTimer() { if (modalTimer) { clearInterval(modalTimer); modalTimer = null; } }
+    function startModalTimer() {
+      stopModalTimer();
+      if (modalImgs.length > 1) {
+        modalTimer = setInterval(function () { showModalImg((modalIdx + 1) % modalImgs.length); }, ROTATE_MS);
+      }
+    }
 
     function showModalImg(i) {
       modalImgs.forEach(function (m, k) { m.img.className = k === i ? 'on' : ''; });
@@ -1002,9 +1036,7 @@
         modalImgs.push({ color: c, img: im });
       });
       showModalImg(0);
-      if (!p.main && modalImgs.length > 1) {
-        modalTimer = setInterval(function () { showModalImg((modalIdx + 1) % modalImgs.length); }, ROTATE_MS);
-      }
+      if (!p.main) startModalTimer();
     }
 
     function selectColor(c, keepMain) {
@@ -1026,16 +1058,30 @@
       updateInfo();
     }
 
+    // Tap the selected color again to cancel the selection (shows the main image again)
+    function deselectColor() {
+      curColor = null;
+      curSize = null;
+      if (curProduct.main) { showModalImg(0); stopModalTimer(); }
+      else startModalTimer();
+      renderColors();
+      renderSizes();
+      updateInfo();
+    }
+
     function renderColors() {
       var box = $('mcolors');
       box.innerHTML = '';
       curProduct.colors.forEach(function (c) {
         var b = el('button', 'opt' + (c.inStock ? '' : ' out') + (c === curColor ? ' sel' : ''), c.name || '-');
         b.type = 'button';
-        if (c.inStock) b.addEventListener('click', function () { selectColor(c); });
+        if (c.inStock) b.addEventListener('click', function () {
+          if (c === curColor) deselectColor(); else selectColor(c);
+        });
         box.appendChild(b);
       });
-      $('colorName').textContent = curColor ? curColor.name : '\u0627\u062e\u062a\u0631 \u0627\u0644\u0644\u0648\u0646';
+      $('colorName').textContent = curColor ? curColor.name : '';
+      $('chint').textContent = curColor ? T_CHINT2 : T_CHINT1;
     }
 
     function renderSizes() {
@@ -1081,9 +1127,16 @@
         add.className = 'btn add off';
         add.textContent = p.inStock ? '\u0627\u062e\u062a\u0631 \u0627\u0644\u0644\u0648\u0646 \u0648\u0627\u0644\u0645\u0642\u0627\u0633' : '\u063a\u064a\u0631 \u0645\u062a\u0648\u0641\u0631 \u062d\u0627\u0644\u064a\u0627\u064b';
       }
+
+      // Sold out: quantity controls become faded and disabled, and "1" is struck through
+      var out = !p.inStock;
+      $('qrow').className = 'qrow' + (out ? ' dis' : '');
+      $('mqplus').disabled = out;
+      $('mqminus').disabled = out;
     }
 
     function setQty(n) {
+      if (curProduct && !curProduct.inStock) return;
       modalQty = Math.max(1, Math.min(99, n));
       $('mqty').textContent = modalQty;
     }
@@ -1093,9 +1146,10 @@
     function buildModalOffers() {
       var box = $('moffer');
       box.innerHTML = '';
-      var d2 = offAmount(2, BUNDLE2), d3 = offAmount(3, BUNDLE3);
-      if (d2 > 0) box.appendChild(el('span', 'ochip', T_2PCS + ': ' + T_OFF + ' ' + d2 + ' ' + CURRENCY + ' + ' + T_FREESHIP_S));
-      if (d3 > 0) box.appendChild(el('span', 'ochip', T_3PCS + ': ' + T_OFF + ' ' + d3 + ' ' + CURRENCY + ' + ' + T_FREESHIP_S));
+      [[T_2PCS, BUNDLE2, 2], [T_3PCS, BUNDLE3, 3], [T_4PCS, BUNDLE4, 4]].forEach(function (o) {
+        var d = offAmount(o[2], o[1]);
+        if (d > 0) box.appendChild(el('span', 'ochip', o[0] + ': ' + T_OFF + ' ' + d + ' ' + CURRENCY + ' + ' + T_FREESHIP_S));
+      });
       box.appendChild(el('span', 'mnote', T_SHIP + ' ' + SHIP_FEE + ' ' + CURRENCY + T_ONEPC));
     }
 
@@ -1103,7 +1157,8 @@
       curProduct = p;
       curColor = null;
       curSize = null;
-      setQty(1);
+      modalQty = 1;
+      $('mqty').textContent = '1';
       $('mcode').textContent = dcode(p.code);
       $('mname').textContent = p.name;
 
@@ -1221,7 +1276,7 @@
       return cart.reduce(function (a, i) { return a + i.qty; }, 0);
     }
 
-    // Pricing: bundles of 3 (BUNDLE3), then a pair (BUNDLE2), shipping free from 2 pieces, then promo code
+    // Pricing: groups of 4 (BUNDLE4), then the remaining 3 (BUNDLE3) or 2 (BUNDLE2); shipping free from 2 pieces; then promo code
     function calcPricing() {
       var units = [];
       cart.forEach(function (it) {
@@ -1231,11 +1286,13 @@
       units.sort(function (a, b) { return b - a; });
       var n = units.length, sub = 0, discount = 0, i = 0;
       units.forEach(function (u) { sub += u; });
-      while (n - i >= 3) {
-        discount += Math.max(0, units[i] + units[i + 1] + units[i + 2] - BUNDLE3);
-        i += 3;
+      while (n - i >= 4) {
+        discount += Math.max(0, units[i] + units[i + 1] + units[i + 2] + units[i + 3] - BUNDLE4);
+        i += 4;
       }
-      if (n - i === 2) discount += Math.max(0, units[i] + units[i + 1] - BUNDLE2);
+      var rest = n - i;
+      if (rest === 3) discount += Math.max(0, units[i] + units[i + 1] + units[i + 2] - BUNDLE3);
+      else if (rest === 2) discount += Math.max(0, units[i] + units[i + 1] - BUNDLE2);
       var base = sub - discount;
       var promo = promoApplied ? Math.min(promoApplied.discount, base) : 0;
       var ship = n === 1 ? SHIP_FEE : 0;
@@ -1389,11 +1446,13 @@
       var pr = calcPricing();
 
       // Nudge toward the next offer
-      var r = pr.n % 3, msg = '';
+      var r = pr.n % 4, msg = '';
       if (r === 1) {
         msg = T_N_ADD2 + fmt(Math.max(0, BUNDLE2 - pr.last)) + ' ' + CURRENCY + (pr.n === 1 ? T_N_FREE : T_N_ONLY);
       } else if (r === 2) {
         msg = T_N_ADD3 + fmt(Math.max(0, BUNDLE3 - BUNDLE2)) + ' ' + CURRENCY + T_N_MORE;
+      } else if (r === 3) {
+        msg = T_N_ADD4 + fmt(Math.max(0, BUNDLE4 - BUNDLE3)) + ' ' + CURRENCY + T_N_MORE;
       } else {
         msg = T_N_BEST;
       }
@@ -1474,27 +1533,70 @@
       });
     });
 
-    /* ---------- Load data from Apps Script (JSONP, no CORS) ---------- */
+    /* ---------- Loading data (patient on slow internet, remembers the last good copy) ---------- */
+    var CACHE_KEY = 'hz_data_v1';
+    var lastStr = '';
+    var inFlight = false;
+    var attempts = 0;
+    var jsonpSeq = 0;
+
+    function readCache() {
+      try {
+        var raw = localStorage.getItem(CACHE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) { return null; }
+    }
+    function writeCache(str) {
+      try { localStorage.setItem(CACHE_KEY, str); } catch (e) {}
+    }
+
+    function applyData(data, fromCache) {
+      var str = JSON.stringify({ products: data.products || [], promos: data.promos || [] });
+      if (str === lastStr) return;
+      lastStr = str;
+      ALL = data.products || [];
+      PROMOS = data.promos || [];
+      restorePromo();
+      render();
+      buildBanner();
+      buildStrip();
+      if (!hashHandled) { hashHandled = true; openFromHash(); }
+      if (!fromCache) writeCache(str);
+    }
+
+    function showSlow() {
+      if (!ALL.length) $('msg').textContent = T_SLOW;
+    }
     function showError() {
       $('grid').innerHTML = '';
       var msg = $('msg');
       msg.innerHTML = '';
-      msg.appendChild(document.createTextNode('\u062d\u062f\u062b \u062e\u0637\u0623 \u0641\u064a \u0627\u0644\u062a\u062d\u0645\u064a\u0644'));
+      msg.appendChild(document.createTextNode(T_ERR));
       msg.appendChild(document.createElement('br'));
-      var b = el('button', '', '\u0625\u0639\u0627\u062f\u0629 \u0627\u0644\u0645\u062d\u0627\u0648\u0644\u0629');
-      b.addEventListener('click', load);
+      var b = el('button', '', T_RETRY);
+      b.addEventListener('click', function () { attempts = 0; showSkeleton(); fetchData(); });
       msg.appendChild(b);
     }
 
-    var jsonpSeq = 0;
-    function load() {
-      showSkeleton();
+    // After a failed attempt: silently try again later; only show an error if offline (or many failures) and nothing to show
+    function retryLater() {
+      attempts++;
+      if (!ALL.length) {
+        if (navigator.onLine === false || attempts >= 4) showError(); else showSlow();
+      }
+      setTimeout(fetchData, Math.min(15000, 2500 * attempts));
+    }
+
+    function fetchData() {
+      if (inFlight) return;
+      inFlight = true;
       var name = 'cb_' + (++jsonpSeq) + '_' + Date.now();
       var done = false;
       var s = document.createElement('script');
 
       function cleanup() {
         done = true;
+        inFlight = false;
         clearTimeout(timer);
         try { delete window[name]; } catch (e) { window[name] = undefined; }
         if (s.parentNode) s.parentNode.removeChild(s);
@@ -1503,30 +1605,39 @@
       window[name] = function (data) {
         if (done) return;
         cleanup();
-        if (!data || !data.ok) { showError(); return; }
-        ALL = data.products || [];
-        PROMOS = data.promos || [];
-        restorePromo();
-        render();
-        buildBanner();
-        if (!hashHandled) { hashHandled = true; openFromHash(); }
+        if (!data || !data.ok) { retryLater(); return; }
+        attempts = 0;
+        applyData(data, false);
       };
 
+      // a very slow connection gets a long time before we give up on this attempt
       var timer = setTimeout(function () {
         if (done) return;
         cleanup();
-        showError();
-      }, 25000);
+        retryLater();
+      }, 60000);
 
       s.onerror = function () {
         if (done) return;
         cleanup();
-        showError();
+        retryLater();
       };
       s.src = API_URL + '?callback=' + name;
       document.body.appendChild(s);
+      // show the "still loading" note if nothing arrives for a while
+      setTimeout(function () { if (inFlight && !ALL.length) showSlow(); }, 6000);
     }
-    load();
+
+    window.addEventListener('online', function () {
+      if (!ALL.length) { attempts = 0; showSkeleton(); fetchData(); }
+    });
+
+    (function start() {
+      var c = readCache();
+      if (c && c.products && c.products.length) applyData(c, true);   // show the last copy instantly
+      else showSkeleton();
+      fetchData();                                                      // then refresh quietly in the background
+    })();
   </script>
 </body>
 </html>
