@@ -114,13 +114,13 @@
     /* ===== Offers strip ===== */
     .ostrip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 14px; }
     .ostrip:empty { display: none; }
-    .otile { position: relative; overflow: hidden; border-radius: 12px; padding: 6px 12px; border: 1px solid rgba(216,180,114,.45); background: linear-gradient(135deg, rgba(216,180,114,.16), rgba(216,180,114,.04)); display: flex; flex-direction: column; gap: 0; }
+    .otile { position: relative; overflow: hidden; border-radius: 13px; padding: 9px 14px; border: 1px solid rgba(216,180,114,.45); background: linear-gradient(135deg, rgba(216,180,114,.16), rgba(216,180,114,.04)); display: flex; flex-direction: column; gap: 1px; }
     .otile::before { content: ''; position: absolute; left: -34px; top: -34px; width: 96px; height: 96px; border-radius: 50%; border: 1px solid rgba(216,180,114,.3); }
     .otile.best { border-color: var(--gold); background: linear-gradient(135deg, rgba(216,180,114,.30), rgba(216,180,114,.07)); box-shadow: 0 0 30px rgba(216,180,114,.15); }
     .otile.promo { border-style: dashed; }
-    .otitle { font-size: 12px; line-height: 1.4; font-weight: 700; color: var(--muted); }
-    .ooff { font-size: 17px; font-weight: 900; line-height: 1.3; background: linear-gradient(110deg, var(--gold-3), var(--gold-2), var(--gold)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
-    .osub { font-size: 11px; line-height: 1.4; font-weight: 700; color: var(--green); }
+    .otitle { font-size: 13px; line-height: 1.4; font-weight: 700; color: var(--muted); }
+    .ooff { font-size: 20px; font-weight: 900; line-height: 1.3; background: linear-gradient(110deg, var(--gold-3), var(--gold-2), var(--gold)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+    .osub { font-size: 12px; line-height: 1.4; font-weight: 700; color: var(--green); }
 
     /* ===== Wide banner (swipe + dots) ===== */
     .banner { display: none; margin-bottom: 26px; }
@@ -324,12 +324,12 @@
       .chip { flex: 1 0 auto; }
       #sort { width: 100%; height: 32px; }
       .wrap { padding: 16px 10px 90px; }
-      .ostrip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; margin-bottom: 12px; }
+      .ostrip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
       .otile:last-child:nth-child(odd) { grid-column: 1 / -1; }
-      .otile { padding: 5px 10px; }
+      .otile { padding: 8px 11px; }
       .otitle { font-size: 12px; }
-      .ooff { font-size: 15px; }
-      .osub { font-size: 10px; }
+      .ooff { font-size: 17px; }
+      .osub { font-size: 11px; }
       .banner { margin-bottom: 20px; }
       .bname { font-size: 12px; }
       .bcode { font-size: 10px; padding: 1px 7px; }
