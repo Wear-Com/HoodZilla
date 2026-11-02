@@ -355,6 +355,37 @@
       #cartfab { width: 54px; height: 54px; bottom: 14px; right: 14px; }
       #toast { bottom: 80px; }
     }
+
+    /* ===== Search icon + filter panel ===== */
+    .toolbar { display: flex; margin-top: -23px; }
+    .fbtn { position: relative; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--gold); background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 22px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.35); transition: transform .2s; }
+    .fbtn:hover { transform: scale(1.06); }
+    .fbtn svg { width: 21px; height: 21px; }
+    #fdot { position: absolute; top: -1px; left: -1px; width: 13px; height: 13px; border-radius: 50%; background: #e0452c; border: 2px solid #1c1812; display: none; }
+    #fpanel { position: fixed; inset: 0; z-index: 90; display: none; background: rgba(8,6,3,.62); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); align-items: flex-start; justify-content: center; padding: 70px 14px 14px; }
+    #fpanel.open { display: flex; }
+    .fsheet { width: 100%; max-width: 520px; max-height: calc(100vh - 90px); display: flex; flex-direction: column; overflow: hidden; background: linear-gradient(180deg, #2b251c, #1f1a13); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 24px 60px rgba(0,0,0,.6), inset 0 1px 0 rgba(243,220,166,.10); animation: fin .22s ease; }
+    @keyframes fin { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .fhead { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--line); font-weight: 800; font-size: 17px; color: var(--gold-2); }
+    .fx { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(216,180,114,.3); background: transparent; color: var(--ink); font-size: 18px; cursor: pointer; line-height: 1; }
+    .fbody { overflow-y: auto; padding: 14px 18px 6px; flex: 1; }
+    .fl { font-size: 12.5px; font-weight: 700; color: var(--muted); margin: 14px 0 8px; }
+    .fl:first-child { margin-top: 0; }
+    #fpanel .chips { flex-wrap: wrap; overflow: visible; gap: 8px; }
+    #fpanel .chip { flex: 0 0 auto; padding: 6px 16px; font-size: 14px; }
+    #fpanel #search { width: 100%; height: 46px; flex: none; padding: 0 14px; }
+    #fpanel #sort { width: 100%; height: 44px; padding: 0 10px; }
+    .fc { border: 1px solid rgba(216,180,114,.28); background: transparent; color: var(--ink); font-family: inherit; font-size: 14px; padding: 6px 15px; border-radius: 30px; cursor: pointer; transition: .2s; }
+    .fc.on { background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #1a1408; border-color: var(--gold); font-weight: 700; }
+    .ffoot { display: flex; gap: 10px; padding: 12px 18px 16px; border-top: 1px solid var(--line); }
+    .ffoot button { height: 46px; border-radius: 12px; font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer; }
+    #freset { flex: 0 0 auto; padding: 0 18px; background: transparent; color: var(--ink); border: 1px solid rgba(216,180,114,.35); }
+    #fgo { flex: 1; border: 0; color: #1a1408; background: linear-gradient(135deg, var(--gold-2), var(--gold)); }
+    .tag.low { background: linear-gradient(135deg, #f0924a, #d4472b); color: #fff; }
+    @media (max-width: 640px) {
+      #fpanel { align-items: flex-end; padding: 0; }
+      .fsheet { max-width: none; max-height: 88vh; border-radius: 20px 20px 0 0; border-bottom: 0; }
+    }
   </style>
 </head>
 <body>
@@ -369,17 +400,35 @@
   </header>
 
   <div class="toolbar">
-    <div class="toolbar-box">
-      <input id="search" type="search" placeholder="&#x627;&#x628;&#x62D;&#x62B; &#x628;&#x627;&#x644;&#x627;&#x633;&#x645; &#x623;&#x648; &#x627;&#x644;&#x643;&#x648;&#x62F;...">
-      <div class="chips">
-        <button class="chip active" data-f="all">&#x627;&#x644;&#x643;&#x644;</button>
-        <button class="chip" data-f="in">&#x627;&#x644;&#x645;&#x62A;&#x648;&#x641;&#x631;</button>
-      </div>
-      <select id="sort">
+    <button class="fbtn" id="fbtn" type="button" aria-label="بحث وتصفية">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+      <i id="fdot"></i>
+    </button>
+  </div>
+
+  <div id="fpanel">
+    <div class="fsheet">
+      <div class="fhead"><span>بحث وتصفية</span><button class="fx" id="fx" type="button" aria-label="إغلاق">&times;</button></div>
+      <div class="fbody">
+        <div class="fl">بحث</div>
+        <input id="search" type="search" placeholder="&#x627;&#x628;&#x62D;&#x62B; &#x628;&#x627;&#x644;&#x627;&#x633;&#x645; &#x623;&#x648; &#x627;&#x644;&#x643;&#x648;&#x62F;...">
+        <div class="fl">الحالة</div>
+        <div class="chips">
+          <button class="chip active" data-f="all">الكل</button>
+          <button class="chip" data-f="in">المتوفر</button>
+          <button class="chip" data-f="low">آخر القطع</button>
+        </div>
+        <div id="fsizesBox"><div class="fl">المقاس</div><div class="chips" id="fsizes"></div></div>
+        <div id="fcolorsBox"><div class="fl">اللون</div><div class="chips" id="fcolors"></div></div>
+        <div class="fl">الترتيب</div>
+        <select id="sort">
         <option value="def">&#x627;&#x644;&#x62A;&#x631;&#x62A;&#x64A;&#x628; &#x627;&#x644;&#x627;&#x641;&#x62A;&#x631;&#x627;&#x636;&#x64A;</option>
         <option value="asc">&#x627;&#x644;&#x633;&#x639;&#x631;: &#x627;&#x644;&#x623;&#x642;&#x644; &#x623;&#x648;&#x644;&#x627;&#x64B;</option>
         <option value="desc">&#x627;&#x644;&#x633;&#x639;&#x631;: &#x627;&#x644;&#x623;&#x639;&#x644;&#x649; &#x623;&#x648;&#x644;&#x627;&#x64B;</option>
       </select>
+        <div style="height:10px"></div>
+      </div>
+      <div class="ffoot"><button id="freset" type="button">مسح</button><button id="fgo" type="button">عرض النتائج</button></div>
     </div>
   </div>
 
@@ -495,7 +544,12 @@
     var BUNDLE3 = 1750;                 // price of 3 pieces (200 off)
     var BUNDLE4 = 2200;                 // price of 4 pieces (400 off)
     var SPEC_LINES = ['\u0642\u0637\u0646 100%', '600-650 \u062c\u0631\u0627\u0645'];   // used only if the Excel spec column (F) is empty
-    var META_PIXEL_ID = '';             // put your Meta Pixel ID here (leave empty to disable)
+    var META_PIXEL_ID = '';             // Facebook / Meta Pixel ID (leave empty to disable)
+    var TIKTOK_PIXEL_ID = '';           // TikTok Pixel ID (leave empty to disable)
+    var GA_ID = '';                     // Google Analytics 4, looks like G-XXXXXXXXXX (leave empty to disable)
+    var GADS_ID = '';                   // Google Ads, looks like AW-XXXXXXXXX (optional)
+    var GADS_LABEL = '';                // Google Ads conversion label for the WhatsApp order click (optional)
+    var ORDERS_LOG = true;              // true = every order sent to WhatsApp is also logged to a Google Sheet by Apps Script
     // ================================
 
     var ALL = [];
@@ -629,23 +683,71 @@
       fab.style.display = 'none';
     }
 
-    /* ---------- Pixel (Meta / TikTok) ---------- */
-    (function initPixel() {
-      if (!META_PIXEL_ID) return;
-      (function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
-        if (!f._fbq) f._fbq = n;
-        n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
-        t = b.createElement(e); t.async = true; t.src = v;
-        s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
-      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-      window.fbq('init', META_PIXEL_ID);
-      window.fbq('track', 'PageView');
+    /* ---------- Pixels (Meta / TikTok / Google) ---------- */
+    (function initPixels() {
+      if (META_PIXEL_ID) {
+        (function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+          if (!f._fbq) f._fbq = n;
+          n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+          t = b.createElement(e); t.async = true; t.src = v;
+          s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        window.fbq('init', META_PIXEL_ID);
+        window.fbq('track', 'PageView');
+      }
+      if (TIKTOK_PIXEL_ID) {
+        (function (w, d, t) {
+          w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || [];
+          ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie'];
+          ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))); }; };
+          for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+          ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]); return e; };
+          ttq.load = function (e, n) {
+            var i = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+            ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = i; ttq._t = ttq._t || {}; ttq._t[e] = +new Date; ttq._o = ttq._o || {}; ttq._o[e] = n || {};
+            var o = document.createElement('script'); o.type = 'text/javascript'; o.async = true; o.src = i + '?sdkid=' + e + '&lib=' + t;
+            var a = document.getElementsByTagName('script')[0]; a.parentNode.insertBefore(o, a);
+          };
+          ttq.load(TIKTOK_PIXEL_ID); ttq.page();
+        })(window, document, 'ttq');
+      }
+      if (GA_ID || GADS_ID) {
+        var gs = document.createElement('script'); gs.async = true;
+        gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + (GA_ID || GADS_ID);
+        document.head.appendChild(gs);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        if (GA_ID) window.gtag('config', GA_ID);
+        if (GADS_ID) window.gtag('config', GADS_ID);
+      }
     })();
-    function track(ev, data) {
-      try { if (window.fbq) window.fbq('track', ev, data || {}); } catch (e) {}
-      try { if (window.ttq && window.ttq.track) window.ttq.track(ev, data || {}); } catch (e) {}
+    var GA_EVENTS = { ViewContent: 'view_item', AddToCart: 'add_to_cart', InitiateCheckout: 'begin_checkout', Lead: 'generate_lead', Search: 'search' };
+    function track(ev, d) {
+      d = d || {};
+      var ids = d.content_ids || [];
+      try { if (window.fbq) window.fbq('track', ev, d); } catch (e) {}
+      try {
+        if (window.ttq) {
+          window.ttq.track(ev === 'Lead' ? 'Contact' : ev, {
+            contents: ids.map(function (id) { return { content_id: id, content_type: 'product', content_name: d.content_name || '' }; }),
+            content_type: 'product', value: d.value || 0, currency: d.currency || 'EGP', query: d.search_string
+          });
+        }
+      } catch (e) {}
+      try {
+        if (window.gtag) {
+          if (GA_EVENTS[ev]) {
+            window.gtag('event', GA_EVENTS[ev], {
+              currency: d.currency || 'EGP', value: d.value || 0, search_term: d.search_string,
+              items: ids.map(function (id) { return { item_id: id, item_name: d.content_name || '' }; })
+            });
+          }
+          if (ev === 'Lead' && GADS_ID && GADS_LABEL) window.gtag('event', 'conversion', { send_to: GADS_ID + '/' + GADS_LABEL, value: d.value || 0, currency: 'EGP' });
+        }
+      } catch (e) {}
     }
 
     function el(tag, cls, text) {
@@ -774,9 +876,18 @@
     function getList() {
       var q = query.toLowerCase();
       var qc = q.replace(/[\s\-]/g, '');
+      var nSz = Object.keys(selSizes).length, nCl = Object.keys(selColors).length;
       var list = ALL.filter(function (p) {
         if (filter === 'in' && !p.inStock) return false;
         if (filter === 'out' && p.inStock) return false;
+        if (filter === 'low' && !p.low) return false;
+        if (nSz || nCl) {
+          var okc = p.colors.some(function (c) {
+            if (!c.inStock || (nCl && !selColors[c.name])) return false;
+            return !nSz || c.sizes.some(function (z) { return z.inStock && selSizes[z.size]; });
+          });
+          if (!okc) return false;
+        }
         if (!q) return true;
         return p.name.toLowerCase().indexOf(q) > -1 ||
                p.code.toLowerCase().indexOf(q) > -1 ||
@@ -788,6 +899,7 @@
     }
 
     function render() {
+      buildFilterChips();
       var list = getList();
       var grid = $('grid');
       if (io) io.disconnect();
@@ -833,7 +945,7 @@
           wrap.appendChild(el('div', 'noimg', '\u0644\u0627 \u062a\u0648\u062c\u062f \u0635\u0648\u0631\u0629'));
         }
         wrap.appendChild(el('div', 'codechip', dcode(p.code)));
-        if (p.inStock) wrap.appendChild(el('div', 'tag', '\u0645\u062a\u0648\u0641\u0631'));
+        if (p.inStock) wrap.appendChild(p.low ? el('div', 'tag low', '\u0622\u062e\u0631 \u0627\u0644\u0642\u0637\u0639') : el('div', 'tag', '\u0645\u062a\u0648\u0641\u0631'));
         else wrap.appendChild(el('div', 'badge', '\u0646\u0641\u0630'));
         card.appendChild(wrap);
 
@@ -869,6 +981,7 @@
 
       $('msg').textContent = list.length ? '' : '\u0644\u0627 \u062a\u0648\u062c\u062f \u0645\u0646\u062a\u062c\u0627\u062a \u0645\u0637\u0627\u0628\u0642\u0629';
       equalize();
+      updateFilterUI(list.length);
       $('count').textContent = list.length ? list.length + ' \u062f\u064a\u0632\u0627\u064a\u0646' : '';
     }
 
@@ -1512,6 +1625,7 @@
 
     function openCart() {
       renderCart();
+      if (cart.length) { var pc = calcPricing(); track('InitiateCheckout', { content_ids: cart.map(function (i) { return i.code; }), num_items: pc.n, value: pc.total, currency: 'EGP' }); }
       $('cart').classList.add('open');
       if (!cartPushed) { pushLayer('c', ''); cartPushed = true; }
     }
@@ -1532,9 +1646,25 @@
       updateBadge();
       renderCart();
     });
+    function logOrder() {
+      if (!ORDERS_LOG || !cart.length) return;
+      try {
+        var pr = calcPricing();
+        fetch(API_URL, {
+          method: 'POST', mode: 'no-cors', keepalive: true,
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            id: Date.now().toString(36).toUpperCase(),
+            items: cart.map(function (i) { return { code: dcode(i.code), name: i.name, color: i.color || '', size: i.size || '', qty: i.qty }; }),
+            total: pr.total, promo: promoApplied ? promoApplied.code : ''
+          })
+        });
+      } catch (e) {}
+    }
     $('csend').addEventListener('click', function () {
       var pr = calcPricing();
-      track('InitiateCheckout', {
+      logOrder();
+      track('Lead', {
         content_ids: cart.map(function (i) { return i.code; }),
         num_items: pr.n, value: pr.total, currency: 'EGP'
       });
@@ -1548,6 +1678,76 @@
     updateBadge();
 
     /* ---------- Filters ---------- */
+    var selSizes = {}, selColors = {}, chipSig = '';
+    function sizeRank(v) {
+      var o = ['XS', 'S', 'M', 'L', 'XL', '2XL', 'XXL', '3XL', '4XL', '5XL'];
+      var i = o.indexOf(String(v).toUpperCase());
+      if (i > -1) return i;
+      var n = parseFloat(v);
+      return isNaN(n) ? 100 : 200 + n;
+    }
+    function fillChips(id, arr, sel) {
+      var box = $(id);
+      box.innerHTML = '';
+      arr.forEach(function (v) {
+        var b = el('button', 'fc' + (sel[v] ? ' on' : ''), v);
+        b.type = 'button';
+        b.addEventListener('click', function () {
+          if (sel[v]) { delete sel[v]; b.classList.remove('on'); } else { sel[v] = 1; b.classList.add('on'); }
+          render();
+        });
+        box.appendChild(b);
+      });
+    }
+    function buildFilterChips() {
+      var sz = {}, cl = {};
+      ALL.forEach(function (p) {
+        p.colors.forEach(function (c) {
+          if (c.name && c.inStock) cl[c.name] = 1;
+          c.sizes.forEach(function (z) { if (z.size && z.inStock) sz[z.size] = 1; });
+        });
+      });
+      var sizes = Object.keys(sz).sort(function (a, b) { return sizeRank(a) - sizeRank(b); });
+      var colors = Object.keys(cl);
+      var sig = sizes.join('|') + '#' + colors.join('|');
+      if (sig === chipSig) return;
+      chipSig = sig;
+      fillChips('fsizes', sizes, selSizes);
+      fillChips('fcolors', colors, selColors);
+      $('fsizesBox').style.display = sizes.length ? '' : 'none';
+      $('fcolorsBox').style.display = colors.length ? '' : 'none';
+    }
+    function updateFilterUI(n) {
+      var active = query || filter !== 'all' || sortMode !== 'def' || Object.keys(selSizes).length || Object.keys(selColors).length;
+      $('fdot').style.display = active ? 'block' : 'none';
+      $('fgo').textContent = '\u0639\u0631\u0636 ' + n + ' \u062f\u064a\u0632\u0627\u064a\u0646';
+    }
+    function openF() {
+      $('fpanel').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      if (window.matchMedia && matchMedia('(hover:hover)').matches) setTimeout(function () { $('search').focus(); }, 120);
+    }
+    function closeF() {
+      if (!$('fpanel').classList.contains('open')) return;
+      $('fpanel').classList.remove('open');
+      document.body.style.overflow = '';
+      if (query) track('Search', { search_string: query });
+    }
+    $('fbtn').addEventListener('click', openF);
+    $('fx').addEventListener('click', closeF);
+    $('fgo').addEventListener('click', closeF);
+    $('fpanel').addEventListener('click', function (e) { if (e.target === this) closeF(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeF(); });
+    $('freset').addEventListener('click', function () {
+      query = ''; filter = 'all'; sortMode = 'def';
+      $('search').value = ''; $('sort').value = 'def';
+      Object.keys(selSizes).forEach(function (k) { delete selSizes[k]; });
+      Object.keys(selColors).forEach(function (k) { delete selColors[k]; });
+      Array.prototype.forEach.call(document.querySelectorAll('.fc.on'), function (b) { b.classList.remove('on'); });
+      document.querySelector('.chip.active').classList.remove('active');
+      document.querySelector('.chip[data-f="all"]').classList.add('active');
+      render();
+    });
     $('search').addEventListener('input', function () { query = this.value.trim(); render(); });
     $('sort').addEventListener('change', function () { sortMode = this.value; render(); });
     Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (c) {
